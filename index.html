@@ -1260,35 +1260,34 @@ function recordTrendSnapshot() {
 }
 
 function showTrendTip(chartId, cx, cy, date, val) {
-  const tip  = document.getElementById(chartId + '-tip');
-  const bg   = document.getElementById(chartId + '-tip-bg');
-  const dtEl = document.getElementById(chartId + '-tip-date');
-  const vEl  = document.getElementById(chartId + '-tip-val');
+  const cross = document.getElementById(chartId + '-cross');
+  const dot   = document.getElementById(chartId + '-dot');
+  const tip   = document.getElementById(chartId + '-tip');
+  const bg    = document.getElementById(chartId + '-tip-bg');
+  const dtEl  = document.getElementById(chartId + '-tip-date');
+  const vEl   = document.getElementById(chartId + '-tip-val');
   if (!tip) return;
-  const W = 80, H = 36, margin = 8;
-  // Format date: YYYY-MM-DD → DD Ay YYYY
+  const tipW = 84, tipH = 40, margin = 6;
   const months = ['Oca','Şub','Mar','Nis','May','Haz','Tem','Ağu','Eyl','Eki','Kas','Ara'];
   const parts = date.split('-');
-  const fmtDate = parts[2] + ' ' + months[parseInt(parts[1])-1] + ' ' + parts[0];
-  dtEl.textContent = fmtDate;
+  dtEl.textContent = parts[2] + ' ' + months[parseInt(parts[1])-1];
   vEl.textContent  = val + '%';
-  // Position: above the dot, centered, clamp to chart bounds
-  const tipX = Math.max(margin, Math.min(cx - W/2, 340 - W - margin));
-  const tipY = cy - H - 8;
-  bg.setAttribute('width', W);
-  bg.setAttribute('height', H);
-  bg.setAttribute('x', tipX);
-  bg.setAttribute('y', tipY);
-  dtEl.setAttribute('x', tipX + W/2);
-  dtEl.setAttribute('y', tipY + 13);
-  vEl.setAttribute('x',  tipX + W/2);
-  vEl.setAttribute('y',  tipY + 28);
+  if (cross) { cross.setAttribute('x1', cx); cross.setAttribute('x2', cx); cross.style.display = ''; }
+  if (dot)   { dot.setAttribute('cx', cx);   dot.setAttribute('cy', cy);   dot.style.display = ''; }
+  const tipX = Math.max(margin, Math.min(cx - tipW/2, 500 - tipW - margin));
+  const tipY = cy - tipH - 12;
+  bg.setAttribute('width', tipW); bg.setAttribute('height', tipH);
+  bg.setAttribute('x', tipX);    bg.setAttribute('y', tipY);
+  dtEl.setAttribute('x', tipX + tipW/2); dtEl.setAttribute('y', tipY + 14);
+  vEl.setAttribute('x',  tipX + tipW/2); vEl.setAttribute('y',  tipY + 31);
   tip.style.display = '';
 }
 
 function hideTrendTip(chartId) {
-  const tip = document.getElementById(chartId + '-tip');
-  if (tip) tip.style.display = 'none';
+  ['cross','dot','tip'].forEach(s => {
+    const el = document.getElementById(chartId + '-' + s);
+    if (el) el.style.display = 'none';
+  });
 }
 
 function renderTrendChart(projId) {
@@ -1319,102 +1318,122 @@ function renderTrendChart(projId) {
     return;
   }
 
-  const W = 480, H = 140, PL = 36, PR = 16, PT = 20, PB = 32;
+  const W = 500, H = 150, PL = 8, PR = 24, PT = 28, PB = 28;
   const cW = W - PL - PR, cH = H - PT - PB;
   const vals = points.map(p => p.v);
-  const minV = 0, maxV = 100;
   const n = points.length;
 
   const xPos = i => PL + (i / (n-1)) * cW;
-  const yPos = v => PT + cH - ((v - minV) / (maxV - minV)) * cH;
+  const yPos = v => PT + cH - (v / 100) * cH;
 
-  // Renk: son değere göre
   const lastV = vals[vals.length-1];
-  const lineColor = lastV>=70?'#16a34a':lastV>=40?'#d97706':'#dc2626';
-  const fillColor = lastV>=70?'rgba(22,163,74,0.08)':lastV>=40?'rgba(217,119,6,0.08)':'rgba(220,38,38,0.08)';
-  const fillColorEnd = lastV>=70?'rgba(22,163,74,0)':lastV>=40?'rgba(217,119,6,0)':'rgba(220,38,38,0)';
-
+  const firstV = vals[0];
+  const lineColor = lastV>=70 ? '#10b981' : lastV>=40 ? '#f59e0b' : '#f43f5e';
   const gradId = 'grad-' + projId;
+  const chartId = 'tc-' + projId;
 
-  // Smooth bezier path
-  const smooth = (pts) => pts.map((p,i) => {
-    if (i === 0) return `M${xPos(i).toFixed(1)},${yPos(p.v).toFixed(1)}`;
-    const prev = pts[i-1];
-    const cpx = (xPos(i-1) + xPos(i)) / 2;
-    return `C${cpx.toFixed(1)},${yPos(prev.v).toFixed(1)} ${cpx.toFixed(1)},${yPos(p.v).toFixed(1)} ${xPos(i).toFixed(1)},${yPos(p.v).toFixed(1)}`;
-  }).join(' ');
+  // Cardinal spline — natural smooth curves
+  const smooth = (pts) => {
+    const t = 0.35;
+    let d = `M${xPos(0).toFixed(1)},${yPos(pts[0].v).toFixed(1)}`;
+    for (let i = 1; i < pts.length; i++) {
+      const p0 = pts[Math.max(0, i-2)];
+      const p1 = pts[i-1];
+      const p2 = pts[i];
+      const p3 = pts[Math.min(pts.length-1, i+1)];
+      const cp1x = xPos(i-1) + (xPos(Math.min(n-1,i))   - xPos(Math.max(0,i-2))) * t;
+      const cp1y = yPos(p1.v) + (yPos(p2.v) - yPos(p0.v)) * t;
+      const cp2x = xPos(i)   - (xPos(Math.min(n-1,i+1)) - xPos(Math.max(0,i-1))) * t;
+      const cp2y = yPos(p2.v) - (yPos(p3.v) - yPos(p1.v)) * t;
+      d += ` C${cp1x.toFixed(1)},${cp1y.toFixed(1)} ${cp2x.toFixed(1)},${cp2y.toFixed(1)} ${xPos(i).toFixed(1)},${yPos(p2.v).toFixed(1)}`;
+    }
+    return d;
+  };
 
   const linePath = smooth(points);
   const fillPath = linePath + ` L${xPos(n-1).toFixed(1)},${PT+cH} L${xPos(0).toFixed(1)},${PT+cH} Z`;
 
-  // Y grid lines: 0, 25, 50, 75, 100
-  const gridLines = [0,25,50,75,100].map(v => {
+  // 3 subtle dashed grid lines only
+  const gridLines = [25, 50, 75].map(v => {
     const y = yPos(v).toFixed(1);
-    return `<line x1="${PL}" y1="${y}" x2="${W-PR}" y2="${y}" stroke="#f1f5f9" stroke-width="1"/>
-            <text x="${PL-8}" y="${parseFloat(y)+4}" font-family="Inter,sans-serif" font-size="10" fill="#9ca3af" text-anchor="end">${v}</text>`;
+    return `<line x1="${PL}" y1="${y}" x2="${W-PR}" y2="${y}" stroke="rgba(0,0,0,0.05)" stroke-width="1" stroke-dasharray="3,5"/>`;
   }).join('');
 
-  // X labels: ilk, 1/3, 2/3, son
-  const xIdxs = [...new Set([0, Math.round((n-1)/3), Math.round(2*(n-1)/3), n-1])];
-  const xLabels = xIdxs.map(i => {
-    const d = points[i].d.slice(5);
-    return `<text x="${xPos(i).toFixed(1)}" y="${H-8}" font-family="Inter,sans-serif" font-size="10" fill="#9ca3af" text-anchor="middle">${d}</text>`;
+  // X labels: start, mid, end — aligned flush
+  const months = ['Oca','Şub','Mar','Nis','May','Haz','Tem','Ağu','Eyl','Eki','Kas','Ara'];
+  const fmtShort = d => { const p = d.split('-'); return p[2] + ' ' + months[parseInt(p[1])-1]; };
+  const xLabels = [0, Math.floor((n-1)/2), n-1].map(i => {
+    const anch = i===0 ? 'start' : i===n-1 ? 'end' : 'middle';
+    return `<text x="${xPos(i).toFixed(1)}" y="${H-4}" font-family="Inter,system-ui,sans-serif" font-size="10" fill="rgba(0,0,0,0.28)" text-anchor="${anch}">${fmtShort(points[i].d)}</text>`;
   }).join('');
 
-  // Data points
-  const dotRadius = 3.5;
-  const chartId = 'tc-' + projId;
-  const dots = points.map((p,i) => {
-    const isLast = i === n-1;
-    const isFirst = i === 0;
-    const cx = xPos(i).toFixed(1);
-    const cy = yPos(p.v).toFixed(1);
-    const showLabel = isLast || isFirst;
-    const fullDate = p.d;
-    return `<g class="trend-dot" style="cursor:pointer"
-        onmouseenter="showTrendTip('${chartId}',${cx},${cy},'${fullDate}',${p.v})"
-        onmouseleave="hideTrendTip('${chartId}')">
-        <circle cx="${cx}" cy="${cy}" r="12" fill="transparent"/>
-        <circle cx="${cx}" cy="${cy}" r="${isLast?5.5:dotRadius}"
-          fill="${isLast?lineColor:'white'}" stroke="${lineColor}"
-          stroke-width="${isLast?0:1.5}" style="transition:r 0.15s"/>
-        ${showLabel?`<text x="${cx}" y="${(parseFloat(cy)-10).toFixed(1)}" font-family="Inter,sans-serif" font-size="11" font-weight="600" fill="${lineColor}" text-anchor="middle">${p.v}%</text>`:''}
-      </g>`;
+  // Voronoi-style hit zones (column per point) for smooth hover
+  const hitZones = points.map((p,i) => {
+    const cx = xPos(i), cy = yPos(p.v);
+    const x1 = i===0 ? PL : (xPos(i-1)+cx)/2;
+    const x2 = i===n-1 ? W-PR : (cx+xPos(i+1))/2;
+    return `<rect x="${x1.toFixed(1)}" y="${PT}" width="${(x2-x1).toFixed(1)}" height="${cH}"
+              fill="transparent" style="cursor:crosshair"
+              onmouseenter="showTrendTip('${chartId}',${cx.toFixed(1)},${cy.toFixed(1)},'${p.d}',${p.v})"
+              onmouseleave="hideTrendTip('${chartId}')"/>`;
   }).join('');
 
-  // Tooltip overlay
-  const tooltip = `<g id="${chartId}-tip" style="display:none;pointer-events:none">
-    <rect id="${chartId}-tip-bg" x="0" y="0" width="76" height="38" rx="6" fill="#1e293b" opacity="0.95"/>
-    <text id="${chartId}-tip-date" x="38" y="14" font-family="Inter,sans-serif" font-size="9" fill="rgba(255,255,255,0.6)" text-anchor="middle"></text>
-    <text id="${chartId}-tip-val"  x="38" y="30" font-family="Inter,sans-serif" font-size="14" font-weight="600" fill="white" text-anchor="middle"></text>
-  </g>`;
+  // End-point: pulsing ring + solid dot
+  const lx = xPos(n-1).toFixed(1), ly = yPos(lastV).toFixed(1);
+  const fx = xPos(0).toFixed(1),   fy = yPos(firstV).toFixed(1);
 
-  // Trend badge
-  const firstV = vals[0];
+  // Crosshair + hover dot + tooltip (all hidden initially)
+  const overlay = `
+    <line id="${chartId}-cross" x1="0" y1="${PT}" x2="0" y2="${PT+cH}"
+      stroke="${lineColor}" stroke-width="1" stroke-dasharray="3,4" opacity="0.45" style="display:none"/>
+    <circle id="${chartId}-dot" cx="0" cy="0" r="4"
+      fill="${lineColor}" stroke="white" stroke-width="2" style="display:none"/>
+    <g id="${chartId}-tip" style="display:none;pointer-events:none">
+      <rect id="${chartId}-tip-bg" rx="8" fill="#0f172a" opacity="0.88"/>
+      <text id="${chartId}-tip-date" font-family="Inter,system-ui,sans-serif" font-size="9.5" fill="rgba(255,255,255,0.5)" text-anchor="middle"></text>
+      <text id="${chartId}-tip-val"  font-family="Inter,system-ui,sans-serif" font-size="15" font-weight="500" fill="white" text-anchor="middle"></text>
+    </g>`;
+
+  // Trend values for header
   const diff = lastV - firstV;
-  const trendIcon = diff > 0 ? '↑' : diff < 0 ? '↓' : '—';
-  const trendColor = diff > 0 ? '#16a34a' : diff < 0 ? '#dc2626' : '#9ca3af';
-  const trendBg = diff > 0 ? '#f0fdf4' : diff < 0 ? '#fef2f2' : '#f9fafb';
+  const trendIcon = diff > 0 ? '↑' : diff < 0 ? '↓' : '→';
+  const trendColor = diff > 0 ? '#10b981' : diff < 0 ? '#f43f5e' : '#94a3b8';
+  const trendBg   = diff > 0 ? '#ecfdf5' : diff < 0 ? '#fff1f2' : '#f8fafc';
 
   el.innerHTML = `
-    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
-      <span style="font-size:12px;color:#9ca3af;font-family:Inter,sans-serif">${n} veri noktası</span>
-      <span style="font-size:12px;font-weight:600;color:${trendColor};background:${trendBg};padding:3px 10px;border-radius:20px;font-family:Inter,sans-serif">${trendIcon} ${Math.abs(diff)}% değişim</span>
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:18px">
+      <div style="display:flex;align-items:baseline;gap:6px">
+        <span style="font-family:Inter,system-ui,sans-serif;font-size:32px;font-weight:300;color:#0f172a;line-height:1;letter-spacing:-1.5px">${lastV}</span>
+        <span style="font-family:Inter,system-ui,sans-serif;font-size:15px;font-weight:300;color:#94a3b8;margin-bottom:2px">%</span>
+        <span style="font-family:Inter,system-ui,sans-serif;font-size:11px;color:#c4c9d4;margin-bottom:3px;padding-left:2px">güncel ilerleme</span>
+      </div>
+      <span style="font-family:Inter,system-ui,sans-serif;font-size:11.5px;font-weight:500;letter-spacing:0.1px;color:${trendColor};background:${trendBg};padding:5px 13px;border-radius:999px">${trendIcon} %${Math.abs(diff)} değişim</span>
     </div>
     <svg width="100%" viewBox="0 0 ${W} ${H}" style="overflow:visible;display:block">
       <defs>
         <linearGradient id="${gradId}" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stop-color="${lineColor}" stop-opacity="0.15"/>
+          <stop offset="0%"   stop-color="${lineColor}" stop-opacity="0.20"/>
+          <stop offset="70%"  stop-color="${lineColor}" stop-opacity="0.04"/>
           <stop offset="100%" stop-color="${lineColor}" stop-opacity="0"/>
         </linearGradient>
       </defs>
       ${gridLines}
       <path d="${fillPath}" fill="url(#${gradId})"/>
-      <path d="${linePath}" fill="none" stroke="${lineColor}" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-      ${dots}
+      <path d="${linePath}" fill="none" stroke="${lineColor}" stroke-width="1.75"
+        stroke-linecap="round" stroke-linejoin="round"/>
+      <!-- Start dot: tiny hollow -->
+      <circle cx="${fx}" cy="${fy}" r="2.5" fill="white" stroke="${lineColor}" stroke-width="1.5" opacity="0.55"/>
+      <!-- End dot: pulsing glow + solid -->
+      <circle cx="${lx}" cy="${ly}" r="8" fill="${lineColor}" opacity="0.12">
+        <animate attributeName="r"       values="5;13;5"     dur="2.8s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0.14;0;0.14" dur="2.8s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="${lx}" cy="${ly}" r="4" fill="${lineColor}" stroke="white" stroke-width="2"/>
       ${xLabels}
-      ${tooltip}
-    </svg>`;
+      ${hitZones}
+      ${overlay}
+    </svg>
+    <div style="font-family:Inter,system-ui,sans-serif;font-size:10.5px;color:rgba(0,0,0,0.2);margin-top:10px;text-align:right">${n} ölçüm</div>`;
 }
 
 
