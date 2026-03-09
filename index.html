@@ -458,6 +458,34 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
   #rapor-scroll { border:none!important;overflow:visible!important;padding:0!important }
   #page-rapor > div { display:block!important }
 }
+
+/* ── Activity Feed ─────────────────────────────────────── */
+.act-feed { display:flex;flex-direction:column }
+.act-item {
+  display:grid;grid-template-columns:34px 1fr;gap:0 12px;
+  position:relative;padding-bottom:20px;
+}
+.act-item:not(:last-child)::before {
+  content:'';position:absolute;left:16px;top:38px;bottom:0;
+  width:1px;background:#eaecf0;
+}
+.act-avatar {
+  width:34px;height:34px;border-radius:50%;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  font-size:11px;font-weight:600;color:white;letter-spacing:0.3px;
+  margin-top:3px;
+}
+.act-body { padding-top:4px }
+.act-who { font-size:12.5px;font-weight:600;color:#0f172a;line-height:1.3 }
+.act-desc { font-size:12px;color:#64748b;margin-top:3px;line-height:1.55 }
+.act-when { font-size:10.5px;color:#94a3b8;margin-top:5px }
+.act-val { color:#0f172a;font-weight:500 }
+.act-arrow { color:#cbd5e1;margin:0 5px;font-size:11px }
+.act-pill {
+  display:inline-flex;align-items:center;gap:4px;
+  padding:1px 8px;border-radius:99px;font-size:11px;font-weight:500;
+  vertical-align:middle;
+}
 </style>
 </head>
 <body>
@@ -1232,6 +1260,119 @@ function saveData() {
   }));
   // Her kayıtta tüm projelerin anlık ilerlemesini snapshot al
   recordTrendSnapshot();
+}
+
+// ════════════════════════════════════════════════════════════
+// ACTIVITY LOG
+// ════════════════════════════════════════════════════════════
+const ACT_KEY = 'torch_activity_v1';
+const ACT_MAX = 300; // max total entries
+
+function getActivity() {
+  try { return JSON.parse(localStorage.getItem(ACT_KEY)) || []; } catch { return []; }
+}
+function saveActivity(acts) {
+  try { localStorage.setItem(ACT_KEY, JSON.stringify(acts.slice(0, ACT_MAX))); } catch {}
+}
+
+function logActivity(projId, field, label, oldVal, newVal, entityId, entityName) {
+  if (String(oldVal) === String(newVal)) return; // no-op
+  if (!currentUser) return;
+  const acts = getActivity();
+  acts.unshift({
+    id: 'ACT-' + Date.now().toString(36) + Math.random().toString(36).slice(2,5),
+    projId,
+    userId: currentUser.id,
+    userName: currentProfile?.full_name || currentUser.id,
+    ts: new Date().toISOString(),
+    field,
+    label,
+    oldVal: oldVal ?? '',
+    newVal: newVal ?? '',
+    entityId: entityId || projId,
+    entityName: entityName || '',
+  });
+  saveActivity(acts);
+}
+
+function _avatarColor(name) {
+  const palette = ['#6366f1','#8b5cf6','#0ea5e9','#14b8a6','#f59e0b','#10b981','#f97316','#ec4899'];
+  let h = 0;
+  for (const c of (name || '?')) h = (h * 31 + c.charCodeAt(0)) % palette.length;
+  return palette[Math.abs(h)];
+}
+function _initials(name) {
+  return (name || '?').split(' ').filter(Boolean).map(w => w[0]).join('').slice(0,2).toUpperCase();
+}
+function _timeAgo(ts) {
+  const m = Math.floor((Date.now() - new Date(ts)) / 60000);
+  if (m < 1) return 'az önce';
+  if (m < 60) return m + ' dk önce';
+  const h = Math.floor(m / 60);
+  if (h < 24) return h + ' sa önce';
+  const d = Math.floor(h / 24);
+  if (d < 30) return d + ' gün önce';
+  const mo = Math.floor(d / 30);
+  return mo + ' ay önce';
+}
+
+const STATUS_COLORS = {
+  'Tamamlandı': ['#dcfce7','#16a34a'], 'Devam Ediyor': ['#dbeafe','#2563eb'],
+  'Geride': ['#fee2e2','#dc2626'], 'Askıya Alındı': ['#fef3c7','#d97706'],
+  'İptal': ['#f1f5f9','#64748b'], 'Yüksek': ['#fee2e2','#dc2626'],
+  'Orta': ['#fef3c7','#d97706'], 'Düşük': ['#dcfce7','#16a34a'],
+  'Kritik': ['#fce7f3','#db2777'],
+};
+
+function _valHtml(val, field) {
+  const isStatus = ['durum','genel_durum','risk','oncelik'].includes(field);
+  const colors = STATUS_COLORS[val];
+  if (isStatus && colors) {
+    return `<span class="act-pill" style="background:${colors[0]};color:${colors[1]}">${val}</span>`;
+  }
+  if (field === 'butce' || field === 'harcanan') {
+    const n = parseFloat(val);
+    return `<span class="act-val">${isNaN(n) ? val : n.toLocaleString('tr-TR') + ' ₺'}</span>`;
+  }
+  if (field === 'ilerleme') return `<span class="act-val">%${val}</span>`;
+  return `<span class="act-val">${val || '—'}</span>`;
+}
+
+const FIELD_LABELS = {
+  ad:'Ad', dept:'Departman', kategori:'Kategori', sorumlu:'Sorumlu',
+  baslangic:'Başlangıç', bitis:'Bitiş', durum:'Durum', butce:'Bütçe',
+  harcanan:'Harcanan', risk:'Risk', asama:'Aşama', aciklama:'Açıklama',
+  genel_durum:'Genel Durum', oncelik:'Öncelik', updated_at:'Son Kontrol',
+  ilerleme:'İlerleme', notlar:'Notlar',
+  gerceklesen:'Gerçekleşen', hedef:'Hedef', birim:'Birim', donem:'Dönem',
+};
+
+function renderActivity(projId) {
+  const el = document.getElementById('act-feed-' + projId);
+  if (!el) return;
+  const acts = getActivity().filter(a => a.projId === projId);
+  if (!acts.length) {
+    el.innerHTML = `<div style="text-align:center;padding:24px 0;color:#94a3b8;font-size:12.5px">Henüz kayıtlı değişiklik yok</div>`;
+    return;
+  }
+  el.innerHTML = `<div class="act-feed">${acts.map(a => {
+    const bg = _avatarColor(a.userName);
+    const ini = _initials(a.userName);
+    const who = a.userName;
+    const when = _timeAgo(a.ts);
+    const lbl = a.label || a.field;
+    const oldH = _valHtml(a.oldVal, a.field);
+    const newH = _valHtml(a.newVal, a.field);
+    const name = a.entityName ? `<span style="color:#94a3b8;font-weight:400"> · ${a.entityName}</span>` : '';
+    return `<div class="act-item">
+      <div class="act-avatar" style="background:${bg}">${ini}</div>
+      <div class="act-body">
+        <div class="act-who">${who}${name}</div>
+        <div class="act-desc"><span style="font-weight:500">${lbl}</span> alanını güncelledi: ${oldH}<span class="act-arrow">→</span>${newH}</div>
+        <div class="act-when">${when}</div>
+      </div>
+    </div>`;
+  }).join('')}</div>`;
 }
 
 function getTrendData() {
@@ -2122,10 +2263,17 @@ function selectProj(id) {
         }).join('')}
       </div>` : ''}
 
+      <!-- Aktivite -->
+      <div class="pd-section">
+        <div class="pd-section-title">🕐 Aktivite</div>
+        <div id="act-feed-${id}"></div>
+      </div>
+
     </div>
   </div>`;
   // Trend grafiğini render et
   setTimeout(() => renderTrendChart(id), 50);
+  setTimeout(() => renderActivity(id), 50);
 }
 
 
@@ -2152,6 +2300,8 @@ function saveUpdatedAt(projId) {
   if (!val) { toast('Tarih seçin','err'); return; }
   const idx = allProjects.findIndex(p => p.id === projId);
   if (idx < 0) return;
+  const old = allProjects[idx].updated_at;
+  logActivity(projId, 'updated_at', 'Son Kontrol', old, val, projId, allProjects[idx].ad);
   allProjects[idx].updated_at = val;
   saveData();
   toast('Son kontrol tarihi güncellendi ✓','ok');
@@ -2161,10 +2311,18 @@ function saveUpdatedAt(projId) {
 function quickSetStep(stepId, val) {
   const idx = allSteps.findIndex(s => s.id === stepId);
   if (idx < 0) return;
-  allSteps[idx].ilerleme = val;
-  if (val === 100) allSteps[idx].durum = 'Tamamlandı';
-  else if (val === 0) { if (allSteps[idx].durum === 'Tamamlandı') allSteps[idx].durum = 'Askıya Alındı'; }
-  else allSteps[idx].durum = 'Devam Ediyor';
+  const s = allSteps[idx];
+  const projId = s.project_id;
+  const oldIlerleme = s.ilerleme;
+  const oldDurum = s.durum;
+  s.ilerleme = val;
+  if (val === 100) s.durum = 'Tamamlandı';
+  else if (val === 0) { if (oldDurum === 'Tamamlandı') s.durum = 'Askıya Alındı'; }
+  else s.durum = 'Devam Ediyor';
+  if (String(oldIlerleme) !== String(val))
+    logActivity(projId, 'ilerleme', 'İlerleme', oldIlerleme, val, stepId, s.ad);
+  if (oldDurum !== s.durum)
+    logActivity(projId, 'durum', 'Durum', oldDurum, s.durum, stepId, s.ad);
   saveData();
   if (selectedProjId) selectProj(selectedProjId);
 }
@@ -2172,10 +2330,19 @@ function quickSetStep(stepId, val) {
 function quickUpdateStep(stepId, val) {
   const idx = allSteps.findIndex(s => s.id === stepId);
   if (idx < 0) return;
-  allSteps[idx].ilerleme = parseInt(val);
-  if (parseInt(val) === 100) allSteps[idx].durum = 'Tamamlandı';
-  else if (parseInt(val) === 0) { if (allSteps[idx].durum === 'Tamamlandı') allSteps[idx].durum = 'Askıya Alındı'; }
-  else allSteps[idx].durum = 'Devam Ediyor';
+  const s = allSteps[idx];
+  const projId = s.project_id;
+  const parsed = parseInt(val);
+  const oldIlerleme = s.ilerleme;
+  const oldDurum = s.durum;
+  s.ilerleme = parsed;
+  if (parsed === 100) s.durum = 'Tamamlandı';
+  else if (parsed === 0) { if (oldDurum === 'Tamamlandı') s.durum = 'Askıya Alındı'; }
+  else s.durum = 'Devam Ediyor';
+  if (String(oldIlerleme) !== String(parsed))
+    logActivity(projId, 'ilerleme', 'İlerleme', oldIlerleme, parsed, stepId, s.ad);
+  if (oldDurum !== s.durum)
+    logActivity(projId, 'durum', 'Durum', oldDurum, s.durum, stepId, s.ad);
   saveData();
   if (selectedProjId) selectProj(selectedProjId);
 }
@@ -2380,7 +2547,14 @@ async function saveProj() {
   await new Promise(r => setTimeout(r, 200));
   if (editId) {
     const idx = allProjects.findIndex(p => p.id === editId);
-    allProjects[idx] = { ...allProjects[idx], ...o };
+    const old = allProjects[idx];
+    const trackFields = ['ad','dept','sorumlu','baslangic','bitis','durum','butce','harcanan','risk','asama','kategori'];
+    trackFields.forEach(f => {
+      if (String(old[f]??'') !== String(o[f]??'')) {
+        logActivity(editId, f, FIELD_LABELS[f]||f, old[f], o[f], editId, o.ad||old.ad);
+      }
+    });
+    allProjects[idx] = { ...old, ...o };
   } else {
     o.id = generateId('PRJ', allProjects);
     allProjects.push(o);
@@ -2396,6 +2570,8 @@ function setGenelDurum(projId, gd) {
   if (!isAdmin()) { toast('Bu işlem için admin yetkisi gerekli', 'err'); return; }
   const idx = allProjects.findIndex(p => p.id === projId);
   if (idx < 0) return;
+  const old = allProjects[idx].genel_durum;
+  logActivity(projId, 'genel_durum', 'Genel Durum', old, gd, projId, allProjects[idx].ad);
   allProjects[idx].genel_durum = gd;
   saveData();
   toast(`Genel durum: ${gd}`, 'ok');
@@ -2696,7 +2872,12 @@ async function saveKpi() {
   await new Promise(r => setTimeout(r, 200));
   if (editId) {
     const idx = allKpis.findIndex(k => k.id === editId);
-    allKpis[idx] = { ...allKpis[idx], ...o };
+    const old = allKpis[idx];
+    ['gerceklesen','hedef','durum','sorumlu','donem'].forEach(f => {
+      if (String(old[f]??'') !== String(o[f]??''))
+        logActivity(o.project_id||old.project_id, f, FIELD_LABELS[f]||f, old[f], o[f], editId, o.ad||old.ad);
+    });
+    allKpis[idx] = { ...old, ...o };
   } else {
     o.id = generateId('KPI', allKpis);
     allKpis.push(o);
@@ -2812,7 +2993,12 @@ async function saveAdim() {
   await new Promise(r => setTimeout(r, 200));
   if (editId) {
     const idx = allSteps.findIndex(a => a.id === editId);
-    allSteps[idx] = { ...allSteps[idx], ...o };
+    const old = allSteps[idx];
+    ['ilerleme','durum','sorumlu','planl_bitis','notlar'].forEach(f => {
+      if (String(old[f]??'') !== String(o[f]??''))
+        logActivity(o.project_id||old.project_id, f, FIELD_LABELS[f]||f, old[f], o[f], editId, o.ad||old.ad);
+    });
+    allSteps[idx] = { ...old, ...o };
   } else {
     o.id = generateId('ADM', allSteps);
     allSteps.push(o);
