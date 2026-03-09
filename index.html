@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>T-Orch</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
 :root {
@@ -33,7 +33,7 @@
   --radius: 10px;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);min-height:100vh}
+body{font-family:'Inter',sans-serif;font-feature-settings:"tnum";-webkit-font-smoothing:antialiased;background:var(--cream);color:#1f2937;min-height:100vh}
 
 /* ── AUTH SCREEN ── */
 #auth-screen{
@@ -49,22 +49,22 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
   box-shadow:var(--shadow-lg);
 }
 .auth-logo{text-align:center;margin-bottom:36px}
-.auth-logo .brand{font-family:'Syne',sans-serif;font-weight:800;font-size:20px;color:var(--navy);letter-spacing:0.5px}
+.auth-logo .brand{p0;font-size:20px;color:var(--navy);letter-spacing:0.5px}
 .auth-logo .sub{font-size:11px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-top:4px}
 .auth-logo .dot{display:inline-block;width:8px;height:8px;background:var(--gold);border-radius:50%;margin:0 3px}
-.auth-title{font-family:'Syne',sans-serif;font-weight:700;font-size:22px;color:var(--navy);margin-bottom:6px}
+.auth-title{p0;font-size:22px;color:var(--navy);margin-bottom:6px}
 .auth-sub{font-size:13px;color:var(--muted);margin-bottom:28px}
 .auth-field{margin-bottom:16px}
 .auth-label{font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:1px;display:block;margin-bottom:6px}
 .auth-input{
   width:100%;padding:12px 16px;border:1.5px solid var(--border);border-radius:8px;
-  font-family:'DM Sans',sans-serif;font-size:14px;color:var(--text);
+  font-family:'Inter',sans-serif;font-size:14px;color:var(--text);
   transition:border-color 0.2s;background:var(--cream)
 }
 .auth-input:focus{outline:none;border-color:var(--navy);background:white}
 .auth-btn{
   width:100%;padding:13px;background:var(--navy);color:white;border:none;border-radius:8px;
-  font-family:'Syne',sans-serif;font-weight:700;font-size:15px;cursor:pointer;
+  font-family:'Inter',sans-serif;font-weight:600;font-size:14px;cursor:pointer;
   transition:all 0.2s;margin-top:6px;letter-spacing:0.5px
 }
 .auth-btn:hover{background:var(--navy-mid);transform:translateY(-1px);box-shadow:var(--shadow)}
@@ -101,19 +101,19 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
 .sidebar-toggle:hover{color:white;background:rgba(255,255,255,0.06)}
 .sidebar.collapsed .sidebar-toggle{transform:rotate(180deg)}
 .sidebar-logo{padding:24px 20px 18px;border-bottom:1px solid rgba(255,255,255,0.07)}
-.sidebar-logo .brand{font-family:'Syne',sans-serif;font-weight:800;font-size:14px;color:var(--gold-light);letter-spacing:0.5px}
+.sidebar-logo .brand{p0;font-size:14px;color:var(--gold-light);letter-spacing:0.5px}
 .sidebar-logo .sub{font-size:10px;color:rgba(255,255,255,0.35);letter-spacing:2px;text-transform:uppercase;margin-top:2px}
 
-.nav-section{padding:14px 10px 6px}
-.nav-label{font-size:9px;color:rgba(255,255,255,0.28);letter-spacing:2px;text-transform:uppercase;padding:0 10px 7px}
+.nav-section{padding:16px 10px 8px}
+.nav-label{font-size:10px;color:rgba(255,255,255,0.28);letter-spacing:1.5px;text-transform:uppercase;padding:0 10px 8px;font-weight:500}
 .nav-item{
-  display:flex;align-items:center;gap:9px;padding:9px 10px;
+  display:flex;align-items:center;gap:10px;padding:10px 12px;
   border-radius:7px;cursor:pointer;transition:all 0.18s;
-  font-size:13px;color:rgba(255,255,255,0.55);font-weight:500;margin-bottom:1px;
+  font-size:14px;color:rgba(255,255,255,0.6);font-weight:500;margin-bottom:2px;
   white-space:nowrap;overflow:hidden
 }
-.nav-item:hover{background:rgba(255,255,255,0.06);color:white}
-.nav-item.active{background:var(--gold);color:var(--navy);font-weight:700}
+.nav-item:hover{background:rgba(255,255,255,0.07);color:white}
+.nav-item.active{background:var(--gold);color:var(--navy);font-weight:600}
 .nav-item .icon{font-size:15px;width:18px;text-align:center}
 .nav-item.admin-only{display:none}
 
@@ -124,7 +124,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
 .user-avatar{
   width:34px;height:34px;border-radius:50%;background:var(--gold);
   display:flex;align-items:center;justify-content:center;
-  font-family:'Syne',sans-serif;font-weight:800;font-size:13px;color:var(--navy);flex-shrink:0
+  p0;font-size:13px;color:var(--navy);flex-shrink:0
 }
 .user-info{flex:1;min-width:0}
 .user-name{font-size:12px;font-weight:600;color:white;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -140,8 +140,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
   border-bottom:1px solid var(--border);position:sticky;top:0;z-index:50;
   box-shadow:0 2px 8px rgba(13,27,42,0.05)
 }
-.topbar-title{font-family:'Syne',sans-serif;font-weight:700;font-size:19px;color:var(--navy)}
-.topbar-sub{font-size:12px;color:var(--muted);margin-top:1px}
+.topbar-title{font-family:'Inter',sans-serif;font-weight:600;font-size:24px;line-height:32px;color:var(--navy)}
+.topbar-sub{font-size:13px;color:var(--muted);margin-top:2px}
 .topbar-actions{display:flex;gap:8px;align-items:center}
 
 .content{padding:24px 28px;flex:1;min-height:0}
@@ -152,7 +152,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
 /* ── BUTTONS ── */
 .btn{
   padding:8px 16px;border-radius:8px;border:none;cursor:pointer;
-  font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;
+  font-family:'Inter',sans-serif;font-size:14px;font-weight:500;
   transition:all 0.18s;display:inline-flex;align-items:center;gap:6px
 }
 .btn-primary{background:var(--navy);color:white}
@@ -169,38 +169,39 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
 /* ── KPI CARDS ── */
 .kpi-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:24px}
 .kpi-card{
-  background:white;border-radius:var(--radius);padding:18px;
-  border:1px solid var(--border);transition:all 0.18s;position:relative;overflow:hidden;cursor:pointer
+  background:white;border-radius:10px;padding:20px;
+  border:1px solid var(--border);transition:all 0.18s;position:relative;overflow:hidden;cursor:pointer;
+  box-shadow:0 2px 8px rgba(0,0,0,0.05)
 }
-.kpi-card:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+.kpi-card:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,0.08)}
 .kpi-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
 .kpi-card.c-navy::before{background:var(--navy)}
 .kpi-card.c-gold::before{background:var(--gold)}
 .kpi-card.c-green::before{background:var(--green)}
 .kpi-card.c-red::before{background:var(--red)}
 .kpi-card.c-blue::before{background:var(--blue)}
-.kpi-lbl{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;font-weight:600}
-.kpi-val{font-family:'Syne',sans-serif;font-size:32px;font-weight:800;margin:5px 0 3px}
+.kpi-val{font-family:'Inter',sans-serif;font-size:32px;font-weight:600;line-height:36px;font-feature-settings:"tnum";margin-bottom:6px}
 .kpi-card.c-navy .kpi-val{color:var(--navy)}
 .kpi-card.c-gold .kpi-val{color:var(--gold)}
 .kpi-card.c-green .kpi-val{color:var(--green)}
 .kpi-card.c-red .kpi-val{color:var(--red)}
 .kpi-card.c-blue .kpi-val{color:var(--blue)}
-.kpi-sub{font-size:11px;color:var(--muted)}
+.kpi-lbl{font-size:12px;color:#6b7280;text-transform:uppercase;letter-spacing:0.4px;font-weight:500}
+.kpi-sub{font-size:12px;color:var(--muted);margin-top:2px}
 
 /* ── TABLE ── */
 .table-wrap{background:white;border-radius:var(--radius);border:1px solid var(--border);overflow:hidden}
 .table-toolbar{padding:12px 18px;border-bottom:1px solid var(--border);display:flex;gap:8px;align-items:center;flex-wrap:wrap}
 .search-inp{
   padding:7px 13px 7px 33px;border-radius:7px;border:1.5px solid var(--border);
-  font-family:'DM Sans',sans-serif;font-size:13px;width:200px;background:var(--cream)
+  font-family:'Inter',sans-serif;font-size:13px;width:200px;background:var(--cream)
   url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='13' height='13' viewBox='0 0 24 24' fill='none' stroke='%236B7A8D' stroke-width='2'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.35-4.35'/%3E%3C/svg%3E") no-repeat 9px center;
   transition:border-color 0.2s
 }
 .search-inp:focus{outline:none;border-color:var(--navy)}
 .filter-sel{
   padding:7px 11px;border-radius:7px;border:1.5px solid var(--border);
-  font-family:'DM Sans',sans-serif;font-size:13px;background:var(--cream);cursor:pointer;
+  font-family:'Inter',sans-serif;font-size:13px;background:var(--cream);cursor:pointer;
   width:100%;min-width:0;text-overflow:ellipsis;color:var(--text)
 }
 .filter-sel:focus{outline:none;border-color:var(--navy)}
@@ -210,7 +211,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
 .cdd-btn {
   width:100%; padding:7px 32px 7px 11px; border-radius:7px;
   border:1.5px solid var(--border); background:var(--cream);
-  font-family:'DM Sans',sans-serif; font-size:13px; color:var(--text);
+  font-family:'Inter',sans-serif; font-size:13px; color:var(--text);
   cursor:pointer; text-align:left; display:flex; align-items:center;
   justify-content:space-between; gap:6px; white-space:nowrap;
   overflow:hidden; text-overflow:ellipsis;
@@ -235,15 +236,14 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
 .tbl-scroll{overflow-x:auto}
 table{width:100%;border-collapse:collapse}
 thead th{
-  text-align:left;padding:11px 15px;
-  font-size:10px;font-weight:700;color:var(--muted);
-  text-transform:uppercase;letter-spacing:1px;
+  text-align:left;padding:12px 16px;
+  font-size:13px;font-weight:500;color:#6b7280;
   background:var(--cream);border-bottom:1px solid var(--border);white-space:nowrap
 }
 tbody tr{border-bottom:1px solid var(--cream-dark);transition:background 0.12s}
 tbody tr:last-child{border-bottom:none}
 tbody tr:hover{background:var(--cream)}
-td{padding:12px 15px;font-size:13px;vertical-align:middle}
+td{padding:14px 16px;font-size:14px;font-weight:400;vertical-align:middle}
 .td-name{font-weight:600;color:var(--navy)}
 .td-muted{color:var(--muted);font-size:11px;margin-top:1px}
 .row-actions{display:flex;gap:5px;opacity:0;transition:opacity 0.15s}
@@ -258,14 +258,14 @@ tr:hover .row-actions{opacity:1}
 .bg-yellow{background:var(--yellow-bg);color:var(--yellow)}.bg-yellow::before{background:var(--yellow)}
 .bg-gray{background:var(--gray-bg);color:#666}.bg-gray::before{background:#999}
 
-.priority{font-size:11px;font-weight:700;padding:2px 8px;border-radius:4px}
+.priority{font-size:11px;font-weight:600;padding:2px 8px;border-radius:4px}
 .pr-k{background:var(--red-bg);color:var(--red)}
 .pr-y{background:var(--yellow-bg);color:var(--yellow)}
 .pr-o{background:var(--blue-bg);color:var(--blue)}
 .pr-d{background:var(--gray-bg);color:#666}
 
 /* ── PROGRESS ── */
-.prog-bar{background:var(--cream-dark);border-radius:4px;height:5px;width:90px;overflow:hidden}
+.prog-bar{background:var(--cream-dark);border-radius:4px;height:6px;width:90px;overflow:hidden}
 .prog-fill{height:100%;border-radius:4px;transition:width 0.4s ease}
 .pf-green{background:var(--green)}
 .pf-gold{background:var(--gold)}
@@ -274,7 +274,7 @@ tr:hover .row-actions{opacity:1}
 
 /* ── SECTION ── */
 .sec-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
-.sec-title{font-family:'Syne',sans-serif;font-weight:700;font-size:15px;color:var(--navy)}
+.sec-title{font-family:'Inter',sans-serif;font-weight:600;font-size:18px;color:var(--navy)}
 
 /* ── FORM ── */
 .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
@@ -283,7 +283,7 @@ tr:hover .row-actions{opacity:1}
 .form-label{font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px}
 .form-input,.form-select,.form-textarea{
   padding:9px 13px;border:1.5px solid var(--border);border-radius:7px;
-  font-family:'DM Sans',sans-serif;font-size:13px;background:white;
+  font-family:'Inter',sans-serif;font-size:14px;background:white;
   transition:border-color 0.2s;color:var(--text)
 }
 .form-input:focus,.form-select:focus,.form-textarea:focus{outline:none;border-color:var(--navy)}
@@ -310,7 +310,7 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
   display:flex;align-items:center;justify-content:space-between;
   position:sticky;top:0;background:white;z-index:10
 }
-.modal-title{font-family:'Syne',sans-serif;font-weight:700;font-size:17px;color:var(--navy)}
+.modal-title{p0;font-size:17px;color:var(--navy)}
 .modal-close{background:none;border:none;font-size:20px;cursor:pointer;color:var(--muted);padding:2px 6px;border-radius:4px}
 .modal-close:hover{background:var(--cream);color:var(--navy)}
 .modal-body{padding:20px 24px}
@@ -318,7 +318,7 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 
 /* ── DETAIL ── */
 .detail-sec{margin-bottom:18px}
-.detail-sec h4{font-family:'Syne',sans-serif;font-weight:700;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:8px;padding-bottom:5px;border-bottom:1px solid var(--cream-dark)}
+.detail-sec h4{p0;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:8px;padding-bottom:5px;border-bottom:1px solid var(--cream-dark)}
 .detail-row{display:flex;justify-content:space-between;align-items:center;padding:5px 0;font-size:13px}
 .detail-row .lbl{color:var(--muted)}
 .detail-row .val{font-weight:600;color:var(--navy)}
@@ -329,19 +329,19 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
   padding:16px 18px;display:flex;align-items:center;gap:14px;transition:all 0.18s
 }
 .user-card:hover{box-shadow:var(--shadow)}
-.uc-avatar{width:42px;height:42px;border-radius:50%;background:var(--navy);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;font-size:15px;color:var(--gold-light);flex-shrink:0}
+.uc-avatar{width:42px;height:42px;border-radius:50%;background:var(--navy);display:flex;align-items:center;justify-content:center;p0;font-size:15px;color:var(--gold-light);flex-shrink:0}
 .uc-info{flex:1}
 .uc-name{font-weight:600;font-size:14px;color:var(--navy)}
 .uc-email{font-size:12px;color:var(--muted)}
 .uc-meta{display:flex;align-items:center;gap:8px;margin-top:4px}
 
-.role-badge{display:inline-block;padding:2px 10px;border-radius:20px;font-size:11px;font-weight:700}
+.role-badge{display:inline-block;padding:2px 10px;border-radius:20px;font-size:11px;font-weight:600}
 .role-admin{background:var(--navy);color:var(--gold-light)}
 .role-user{background:var(--cream-dark);color:var(--navy)}
 
 /* ── PROJ LIST ── */
 .proj-list-item {
-  padding: 13px 16px;
+  padding: 14px 16px;
   border-bottom: 1px solid var(--cream-dark);
   cursor: pointer;
   transition: background 0.15s;
@@ -354,8 +354,8 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 .proj-list-item.active .pli-dept { background: rgba(255,255,255,0.15); color: rgba(255,255,255,0.8); }
 .pli-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
 .pli-body { flex: 1; min-width: 0; }
-.pli-name { font-size: 13px; font-weight: 600; color: var(--navy); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.pli-meta { font-size: 11px; color: var(--muted); margin-top: 2px; }
+.pli-name { font-size: 14px; font-weight: 600; color: var(--navy); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.pli-meta { font-size: 13px; font-weight: 400; color: var(--muted); margin-top: 3px; }
 .pli-right { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; flex-shrink: 0; }
 .pli-dept { font-size: 10px; font-weight: 600; padding: 2px 7px; border-radius: 10px; background: var(--cream-dark); color: var(--navy); }
 .pli-pct { font-size: 11px; font-weight: 700; color: var(--muted); }
@@ -367,7 +367,7 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
   background: var(--navy);
   border-radius: var(--radius) var(--radius) 0 0;
 }
-.pd-title { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 18px; color: white; }
+.pd-title { font-family: 'Inter', sans-serif; font-weight: 600; font-size: 18px; color: white; }
 .pd-sub { font-size: 12px; color: rgba(255,255,255,0.5); margin-top: 4px; }
 .pd-header-badges { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
 .pd-body { padding: 20px 24px; }
@@ -416,10 +416,10 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 .dept-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
 .dept-card{background:white;border-radius:var(--radius);padding:14px 16px;border:1px solid var(--border);transition:all 0.18s}
 .dept-card:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
-.dept-name{font-family:'Syne',sans-serif;font-weight:700;font-size:13px;color:var(--navy);margin-bottom:8px}
+.dept-name{p0;font-size:13px;color:var(--navy);margin-bottom:8px}
 .dept-stats{display:flex;gap:10px;flex-wrap:wrap}
 .dept-stat{font-size:11px;color:var(--muted)}
-.dept-stat span{font-weight:800;font-size:15px;display:block;color:var(--navy)}
+.dept-stat span{font-weight:600;font-size:15px;display:block;color:var(--navy)}
 
 /* ── ACCESS CHIPS ── */
 .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
@@ -585,11 +585,11 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
           <div style="display:flex;background:var(--cream);border-radius:8px;padding:3px;gap:2px">
             <button onclick="setDashView('standard')" id="dash-view-std"
-              style="padding:5px 16px;border-radius:6px;border:none;font-size:12px;font-weight:700;cursor:pointer;background:var(--navy);color:white;transition:all 0.18s">
+              style="padding:5px 16px;border-radius:6px;border:none;font-size:12px;font-weight:600;cursor:pointer;background:var(--navy);color:white;transition:all 0.18s">
               📊 Standart
             </button>
             <button onclick="setDashView('executive')" id="dash-view-exec"
-              style="padding:5px 16px;border-radius:6px;border:none;font-size:12px;font-weight:700;cursor:pointer;background:transparent;color:var(--muted);transition:all 0.18s">
+              style="padding:5px 16px;border-radius:6px;border:none;font-size:12px;font-weight:600;cursor:pointer;background:transparent;color:var(--muted);transition:all 0.18s">
               👔 Executive
             </button>
           </div>
@@ -614,7 +614,7 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
           <div>
             <div class="sec-header">
               <div class="sec-title">🎯 Stratejik Hizalanma Katmanı</div>
-              <button onclick="nav('alignment',document.querySelector('[onclick*=alignment]'))" style="font-size:11px;color:var(--navy);background:none;border:1.5px solid var(--border);border-radius:6px;padding:3px 12px;cursor:pointer;font-weight:700">Tümünü Gör →</button>
+              <button onclick="nav('alignment',document.querySelector('[onclick*=alignment]'))" style="font-size:11px;color:var(--navy);background:none;border:1.5px solid var(--border);border-radius:6px;padding:3px 12px;cursor:pointer;font-weight:600">Tümünü Gör →</button>
             </div>
             <div id="dash-alignment-summary"></div>
           </div>
@@ -684,9 +684,9 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
       <!-- KPI -->
       <div id="page-kpi" class="page">
         <div style="display:flex;gap:8px;margin-bottom:10px">
-          <button id="kpi-cat-all" onclick="setKpiCat('all')" style="padding:6px 16px;border-radius:20px;border:1.5px solid var(--navy);background:var(--navy);color:white;font-size:12px;font-weight:700;cursor:pointer">Tümü</button>
-          <button id="kpi-cat-active" onclick="setKpiCat('active')" style="padding:6px 16px;border-radius:20px;border:1.5px solid var(--border);background:white;color:var(--navy);font-size:12px;font-weight:700;cursor:pointer">▶ Devam Eden Projeler</button>
-          <button id="kpi-cat-done" onclick="setKpiCat('done')" style="padding:6px 16px;border-radius:20px;border:1.5px solid var(--border);background:white;color:var(--navy);font-size:12px;font-weight:700;cursor:pointer">✓ Tamamlanan Projeler</button>
+          <button id="kpi-cat-all" onclick="setKpiCat('all')" style="padding:6px 16px;border-radius:20px;border:1.5px solid var(--navy);background:var(--navy);color:white;font-size:12px;font-weight:600;cursor:pointer">Tümü</button>
+          <button id="kpi-cat-active" onclick="setKpiCat('active')" style="padding:6px 16px;border-radius:20px;border:1.5px solid var(--border);background:white;color:var(--navy);font-size:12px;font-weight:600;cursor:pointer">▶ Devam Eden Projeler</button>
+          <button id="kpi-cat-done" onclick="setKpiCat('done')" style="padding:6px 16px;border-radius:20px;border:1.5px solid var(--border);background:white;color:var(--navy);font-size:12px;font-weight:600;cursor:pointer">✓ Tamamlanan Projeler</button>
         </div>
         <div style="display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap;align-items:center">
           <input class="search-inp" style="flex:1;min-width:160px" placeholder="KPI ara..." id="k-search" oninput="renderKPI()">
@@ -720,14 +720,14 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
         <!-- Rapor sekmeleri -->
         <div style="display:flex;gap:0;margin-bottom:16px;background:white;border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;align-items:stretch">
           <div id="rapor-tab-bar" style="display:flex;flex:1;overflow-x:auto"></div>
-          <button onclick="addRaporTab()" title="Yeni rapor ekle" style="padding:0 16px;border:none;border-left:1px solid var(--border);background:var(--cream);color:var(--navy);font-size:18px;cursor:pointer;font-weight:700;flex-shrink:0;transition:background 0.15s" onmouseover="this.style.background='var(--cream-dark)'" onmouseout="this.style.background='var(--cream)'">＋</button>
+          <button onclick="addRaporTab()" title="Yeni rapor ekle" style="padding:0 16px;border:none;border-left:1px solid var(--border);background:var(--cream);color:var(--navy);font-size:18px;cursor:pointer;font-weight:600;flex-shrink:0;transition:background 0.15s" onmouseover="this.style.background='var(--cream-dark)'" onmouseout="this.style.background='var(--cream)'">＋</button>
         </div>
 
         <div style="display:grid;grid-template-columns:280px 1fr;gap:16px;height:calc(100vh - 180px)">
           <!-- SOL: Ayarlar paneli -->
           <div style="background:white;border:1px solid var(--border);border-radius:var(--radius);overflow-y:auto;display:flex;flex-direction:column">
             <div style="padding:14px 16px;border-bottom:1px solid var(--border);background:var(--cream)">
-              <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:13px;color:var(--navy)" id="rapor-panel-title">Rapor Ayarları</div>
+              <div style="p0;font-size:13px;color:var(--navy)" id="rapor-panel-title">Rapor Ayarları</div>
               <div style="font-size:11px;color:var(--muted);margin-top:2px">Dahil edilecek projeleri seçin</div>
             </div>
             <div style="padding:14px 16px;border-bottom:1px solid var(--border)">
@@ -799,10 +799,10 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
             <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap">
               <span style="font-size:11px;color:var(--muted);font-weight:600">Sırala:</span>
               <div style="display:flex;gap:4px;flex-wrap:wrap" id="user-sort-btns">
-                <button onclick="setUserSort('name')"    id="usort-name"    class="usort-btn active-sort" style="padding:4px 12px;border-radius:20px;border:1.5px solid var(--navy);background:var(--navy);color:white;font-size:11px;font-weight:700;cursor:pointer">İsim</button>
-                <button onclick="setUserSort('dept')"    id="usort-dept"    class="usort-btn" style="padding:4px 12px;border-radius:20px;border:1.5px solid var(--border);background:white;color:var(--muted);font-size:11px;font-weight:700;cursor:pointer">Departman</button>
-                <button onclick="setUserSort('role')"    id="usort-role"    class="usort-btn" style="padding:4px 12px;border-radius:20px;border:1.5px solid var(--border);background:white;color:var(--muted);font-size:11px;font-weight:700;cursor:pointer">Rol</button>
-                <button onclick="setUserSort('login')"   id="usort-login"   class="usort-btn" style="padding:4px 12px;border-radius:20px;border:1.5px solid var(--border);background:white;color:var(--muted);font-size:11px;font-weight:700;cursor:pointer">Son Giriş</button>
+                <button onclick="setUserSort('name')"    id="usort-name"    class="usort-btn active-sort" style="padding:4px 12px;border-radius:20px;border:1.5px solid var(--navy);background:var(--navy);color:white;font-size:11px;font-weight:600;cursor:pointer">İsim</button>
+                <button onclick="setUserSort('dept')"    id="usort-dept"    class="usort-btn" style="padding:4px 12px;border-radius:20px;border:1.5px solid var(--border);background:white;color:var(--muted);font-size:11px;font-weight:600;cursor:pointer">Departman</button>
+                <button onclick="setUserSort('role')"    id="usort-role"    class="usort-btn" style="padding:4px 12px;border-radius:20px;border:1.5px solid var(--border);background:white;color:var(--muted);font-size:11px;font-weight:600;cursor:pointer">Rol</button>
+                <button onclick="setUserSort('login')"   id="usort-login"   class="usort-btn" style="padding:4px 12px;border-radius:20px;border:1.5px solid var(--border);background:white;color:var(--muted);font-size:11px;font-weight:600;cursor:pointer">Son Giriş</button>
               </div>
             </div>
             <div id="users-list" style="display:flex;flex-direction:column;gap:10px"></div>
@@ -1387,7 +1387,7 @@ function renderTrendChart(projId) {
   el.innerHTML = `
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
       <span style="font-size:11px;color:var(--muted)">${n} veri noktası</span>
-      <span style="font-size:12px;font-weight:700;color:${trendColor}">${trendIcon} ${Math.abs(diff)}% değişim</span>
+      <span style="font-size:12px;font-weight:600;color:${trendColor}">${trendIcon} ${Math.abs(diff)}% değişim</span>
     </div>
     <svg width="100%" viewBox="0 0 ${W} ${H}" style="overflow:visible;display:block">
       ${gridLines}
@@ -1531,33 +1531,33 @@ function renderExecutive() {
     <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:20px">
       <div style="background:white;border:1.5px solid var(--border);border-radius:12px;padding:20px;position:relative;overflow:hidden">
         <div style="position:absolute;top:0;right:0;width:60px;height:60px;background:var(--navy)11;border-radius:0 12px 0 60px;padding:8px;font-size:20px;display:flex;align-items:flex-start;justify-content:flex-end">&#127919;</div>
-        <div style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);margin-bottom:6px">Toplam Proje</div>
-        <div style="font-family:'Syne',sans-serif;font-size:30px;font-weight:800;color:var(--navy);line-height:1.1">${tot}</div>
+        <div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);margin-bottom:6px">Toplam Proje</div>
+        <div style="font-family:'Inter',sans-serif;font-size:30px;font-weight:600;color:var(--navy);line-height:1.1">${tot}</div>
         <div style="font-size:11px;color:var(--muted);margin-top:4px">${aktReal} aktif &middot; ${tamReal} tamam</div>
       </div>
       <div style="background:white;border:1.5px solid var(--border);border-radius:12px;padding:20px;position:relative;overflow:hidden">
         <div style="position:absolute;top:0;right:0;width:60px;height:60px;border-radius:0 12px 0 60px;padding:8px;font-size:20px;display:flex;align-items:flex-start;justify-content:flex-end">&#128200;</div>
-        <div style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);margin-bottom:6px">Portf&#246;y &#304;lerlemesi</div>
-        <div style="font-family:'Syne',sans-serif;font-size:30px;font-weight:800;color:${progColor};line-height:1.1">${avgProg}%</div>
+        <div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);margin-bottom:6px">Portf&#246;y &#304;lerlemesi</div>
+        <div style="font-family:'Inter',sans-serif;font-size:30px;font-weight:600;color:${progColor};line-height:1.1">${avgProg}%</div>
         <div style="font-size:11px;color:var(--muted);margin-top:4px">T&#252;m ad&#305;mlar ortalamas&#305;</div>
       </div>
       <div style="background:white;border:1.5px solid var(--border);border-radius:12px;padding:20px;position:relative;overflow:hidden">
         <div style="position:absolute;top:0;right:0;width:60px;height:60px;border-radius:0 12px 0 60px;padding:8px;font-size:20px;display:flex;align-items:flex-start;justify-content:flex-end">&#9888;&#65039;</div>
-        <div style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);margin-bottom:6px">Dikkat Gereken</div>
-        <div style="font-family:'Syne',sans-serif;font-size:30px;font-weight:800;color:var(--red);line-height:1.1">${gec+askReal}</div>
+        <div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);margin-bottom:6px">Dikkat Gereken</div>
+        <div style="font-family:'Inter',sans-serif;font-size:30px;font-weight:600;color:var(--red);line-height:1.1">${gec+askReal}</div>
         <div style="font-size:11px;color:var(--muted);margin-top:4px">${gec} geride &middot; ${askReal} ask&#305;da</div>
       </div>
       <div style="background:white;border:1.5px solid var(--border);border-radius:12px;padding:20px;position:relative;overflow:hidden">
         <div style="position:absolute;top:0;right:0;width:60px;height:60px;border-radius:0 12px 0 60px;padding:8px;font-size:20px;display:flex;align-items:flex-start;justify-content:flex-end">&#128184;</div>
-        <div style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);margin-bottom:6px">Toplam B&#252;t&#231;e</div>
-        <div style="font-family:'Syne',sans-serif;font-size:30px;font-weight:800;color:var(--gold);line-height:1.1">${fmtM(totalBudget)}</div>
+        <div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);margin-bottom:6px">Toplam B&#252;t&#231;e</div>
+        <div style="font-family:'Inter',sans-serif;font-size:30px;font-weight:600;color:var(--gold);line-height:1.1">${fmtM(totalBudget)}</div>
         <div style="font-size:11px;color:var(--muted);margin-top:4px">${fmtM(totalSpent)} harcand&#305; &middot; %${budgetPct}</div>
       </div>
     </div>
 
     <div style="display:grid;grid-template-columns:2fr 1fr;gap:14px;margin-bottom:20px">
       <div style="background:white;border:1.5px solid var(--border);border-radius:12px;padding:20px">
-        <div style="font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);margin-bottom:16px">&#128202; Portf&#246;y Sa&#287;l&#305;&#287;&#305;</div>
+        <div style="font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);margin-bottom:16px">&#128202; Portf&#246;y Sa&#287;l&#305;&#287;&#305;</div>
         <div style="display:flex;height:18px;border-radius:9px;overflow:hidden;margin-bottom:12px">
           ${tamReal>0?'<div style="flex:'+tamReal+';background:var(--green)" title="Tamamlandı"></div>':''}
           ${aktReal>0?'<div style="flex:'+aktReal+';background:var(--blue)" title="Devam Ediyor"></div>':''}
@@ -1565,23 +1565,23 @@ function renderExecutive() {
           ${gec>0?'<div style="flex:'+gec+';background:var(--red)" title="Geride"></div>':''}
         </div>
         <div style="display:flex;gap:16px;flex-wrap:wrap;margin-bottom:16px">
-          <div style="display:flex;align-items:center;gap:5px"><div style="width:10px;height:10px;border-radius:50%;background:var(--green)"></div><span style="font-size:12px;color:var(--muted)">Tamamland&#305;</span><span style="font-size:13px;font-weight:800;color:var(--navy)">${tamReal}</span></div>
-          <div style="display:flex;align-items:center;gap:5px"><div style="width:10px;height:10px;border-radius:50%;background:var(--blue)"></div><span style="font-size:12px;color:var(--muted)">Aktif</span><span style="font-size:13px;font-weight:800;color:var(--navy)">${aktReal}</span></div>
-          <div style="display:flex;align-items:center;gap:5px"><div style="width:10px;height:10px;border-radius:50%;background:var(--yellow)"></div><span style="font-size:12px;color:var(--muted)">Ask&#305;da</span><span style="font-size:13px;font-weight:800;color:var(--navy)">${askReal}</span></div>
-          <div style="display:flex;align-items:center;gap:5px"><div style="width:10px;height:10px;border-radius:50%;background:var(--red)"></div><span style="font-size:12px;color:var(--muted)">Geride</span><span style="font-size:13px;font-weight:800;color:var(--navy)">${gec}</span></div>
+          <div style="display:flex;align-items:center;gap:5px"><div style="width:10px;height:10px;border-radius:50%;background:var(--green)"></div><span style="font-size:12px;color:var(--muted)">Tamamland&#305;</span><span style="font-size:13px;font-weight:600;color:var(--navy)">${tamReal}</span></div>
+          <div style="display:flex;align-items:center;gap:5px"><div style="width:10px;height:10px;border-radius:50%;background:var(--blue)"></div><span style="font-size:12px;color:var(--muted)">Aktif</span><span style="font-size:13px;font-weight:600;color:var(--navy)">${aktReal}</span></div>
+          <div style="display:flex;align-items:center;gap:5px"><div style="width:10px;height:10px;border-radius:50%;background:var(--yellow)"></div><span style="font-size:12px;color:var(--muted)">Ask&#305;da</span><span style="font-size:13px;font-weight:600;color:var(--navy)">${askReal}</span></div>
+          <div style="display:flex;align-items:center;gap:5px"><div style="width:10px;height:10px;border-radius:50%;background:var(--red)"></div><span style="font-size:12px;color:var(--muted)">Geride</span><span style="font-size:13px;font-weight:600;color:var(--navy)">${gec}</span></div>
         </div>
         <div style="padding-top:16px;border-top:1px solid var(--cream-dark)">
-          <div style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-bottom:10px">A&#351;ama Da&#287;&#305;l&#305;m&#305;</div>
+          <div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-bottom:10px">A&#351;ama Da&#287;&#305;l&#305;m&#305;</div>
           <div style="display:flex;flex-direction:column;gap:8px">
-            ${PROJ_ASAMALAR.map(a=>{const cfg=ASAMA_CFG[a];const ps=allProjects.filter(p=>p.asama===a);const pct2=tot?Math.round(ps.length/tot*100):0;return '<div style="display:flex;align-items:center;gap:10px"><span style="font-size:12px;width:100px;color:var(--text);font-weight:600">'+cfg.icon+' '+a+'</span><div style="flex:1;height:8px;background:var(--cream-dark);border-radius:4px;overflow:hidden"><div style="height:100%;background:'+cfg.color+';width:'+pct2+'%;border-radius:4px"></div></div><span style="font-size:12px;font-weight:800;color:'+cfg.color+';min-width:24px">'+ps.length+'</span></div>';}).join('')}
+            ${PROJ_ASAMALAR.map(a=>{const cfg=ASAMA_CFG[a];const ps=allProjects.filter(p=>p.asama===a);const pct2=tot?Math.round(ps.length/tot*100):0;return '<div style="display:flex;align-items:center;gap:10px"><span style="font-size:12px;width:100px;color:var(--text);font-weight:600">'+cfg.icon+' '+a+'</span><div style="flex:1;height:8px;background:var(--cream-dark);border-radius:4px;overflow:hidden"><div style="height:100%;background:'+cfg.color+';width:'+pct2+'%;border-radius:4px"></div></div><span style="font-size:12px;font-weight:600;color:'+cfg.color+';min-width:24px">'+ps.length+'</span></div>';}).join('')}
           </div>
         </div>
       </div>
       <div style="display:flex;flex-direction:column;gap:14px">
         <div style="background:white;border:1.5px solid var(--border);border-radius:12px;padding:20px;flex:1">
-          <div style="font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);margin-bottom:14px">&#128184; B&#252;t&#231;e Kullan&#305;m&#305;</div>
+          <div style="font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);margin-bottom:14px">&#128184; B&#252;t&#231;e Kullan&#305;m&#305;</div>
           <div style="text-align:center;margin-bottom:10px">
-            <div style="font-family:'Syne',sans-serif;font-size:36px;font-weight:800;color:${budgetColor}">${budgetPct}%</div>
+            <div style="font-family:'Inter',sans-serif;font-size:36px;font-weight:600;color:${budgetColor}">${budgetPct}%</div>
             <div style="font-size:11px;color:var(--muted)">kullan&#305;ld&#305;</div>
           </div>
           <div style="height:10px;background:var(--cream-dark);border-radius:5px;overflow:hidden;margin-bottom:8px">
@@ -1593,9 +1593,9 @@ function renderExecutive() {
           </div>
         </div>
         <div style="background:white;border:1.5px solid var(--border);border-radius:12px;padding:20px;flex:1">
-          <div style="font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);margin-bottom:14px">&#128204; KPI Durumu</div>
+          <div style="font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);margin-bottom:14px">&#128204; KPI Durumu</div>
           <div style="text-align:center;margin-bottom:10px">
-            <div style="font-family:'Syne',sans-serif;font-size:36px;font-weight:800;color:var(--navy)">${kpiDone}<span style="font-size:18px;color:var(--muted)">/${allKpis.length}</span></div>
+            <div style="font-family:'Inter',sans-serif;font-size:36px;font-weight:600;color:var(--navy)">${kpiDone}<span style="font-size:18px;color:var(--muted)">/${allKpis.length}</span></div>
             <div style="font-size:11px;color:var(--muted)">tamamland&#305;</div>
           </div>
           <div style="height:8px;background:var(--cream-dark);border-radius:4px;overflow:hidden">
@@ -1608,21 +1608,21 @@ function renderExecutive() {
 
     ${goalStats.length ? `
     <div style="background:white;border:1.5px solid var(--border);border-radius:12px;padding:20px;margin-bottom:20px">
-      <div style="font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);margin-bottom:16px">&#127919; Stratejik Hedefler Bazl&#305; &#304;lerleme</div>
+      <div style="font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);margin-bottom:16px">&#127919; Stratejik Hedefler Bazl&#305; &#304;lerleme</div>
       <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px">
-        ${goalStats.map(sg=>{const c=sg.avgP>=70?'var(--green)':sg.avgP>=40?'var(--yellow)':'var(--red)';return '<div style="padding:12px;border:1px solid var(--border);border-radius:8px;background:var(--cream)"><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px"><span style="font-size:18px">'+sg.icon+'</span><div style="flex:1;min-width:0"><div style="font-size:12px;font-weight:700;color:var(--navy);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+sg.baslik+'</div><div style="font-size:10px;color:var(--muted)">'+sg.linked+' proje &middot; '+sg.done+' tamamland&#305;</div></div><div style="font-family:Syne,sans-serif;font-size:18px;font-weight:800;color:'+c+'">'+sg.avgP+'%</div></div><div style="height:6px;background:white;border-radius:3px;overflow:hidden"><div style="height:100%;background:'+c+';width:'+sg.avgP+'%;border-radius:3px"></div></div></div>';}).join('')}
+        ${goalStats.map(sg=>{const c=sg.avgP>=70?'var(--green)':sg.avgP>=40?'var(--yellow)':'var(--red)';return '<div style="padding:12px;border:1px solid var(--border);border-radius:8px;background:var(--cream)"><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px"><span style="font-size:18px">'+sg.icon+'</span><div style="flex:1;min-width:0"><div style="font-size:12px;font-weight:600;color:var(--navy);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+sg.baslik+'</div><div style="font-size:10px;color:var(--muted)">'+sg.linked+' proje &middot; '+sg.done+' tamamland&#305;</div></div><div style="font-family:Inter,sans-serif;font-size:18px;font-weight:600;font-feature-settings:'tnum';color:'+c+'">'+sg.avgP+'%</div></div><div style="height:6px;background:white;border-radius:3px;overflow:hidden"><div style="height:100%;background:'+c+';width:'+sg.avgP+'%;border-radius:3px"></div></div></div>';}).join('')}
       </div>
     </div>` : ''}
 
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
       <div style="background:white;border:1.5px solid var(--border);border-radius:12px;padding:20px">
-        <div style="font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);margin-bottom:14px">&#128680; Aksiyon Gereken Projeler</div>
-        ${kritik.length ? kritik.map(p=>{const prog=calcStepProgress(p.id);const pc=prog>=80?'var(--green)':prog>=40?'var(--yellow)':'var(--red)';return '<div data-pid="'+p.id+'" onclick="goToProj(this.dataset.pid)" style="display:flex;align-items:center;gap:10px;padding:10px;border-radius:8px;margin-bottom:6px;border:1px solid var(--border);cursor:pointer;transition:background 0.15s" onmouseover="this.style.background=\'var(--cream)\'" onmouseout="this.style.background=\'white\'"><div style="flex:1;min-width:0"><div style="font-size:13px;font-weight:700;color:var(--navy);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+p.ad+'</div><div style="font-size:11px;color:var(--muted)">'+p.dept+' &middot; '+p.sorumlu+'</div></div><div style="text-align:right;flex-shrink:0">'+statusBadge(p.durum)+'<div style="font-size:11px;font-weight:700;color:'+pc+';margin-top:2px">'+prog+'%</div></div></div>';}).join('') : '<div style="text-align:center;padding:20px;color:var(--muted);font-size:13px">&#10003; Kritik proje yok</div>'}
+        <div style="font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);margin-bottom:14px">&#128680; Aksiyon Gereken Projeler</div>
+        ${kritik.length ? kritik.map(p=>{const prog=calcStepProgress(p.id);const pc=prog>=80?'var(--green)':prog>=40?'var(--yellow)':'var(--red)';return '<div data-pid="'+p.id+'" onclick="goToProj(this.dataset.pid)" style="display:flex;align-items:center;gap:10px;padding:10px;border-radius:8px;margin-bottom:6px;border:1px solid var(--border);cursor:pointer;transition:background 0.15s" onmouseover="this.style.background=\'var(--cream)\'" onmouseout="this.style.background=\'white\'"><div style="flex:1;min-width:0"><div style="font-size:13px;font-weight:600;color:var(--navy);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+p.ad+'</div><div style="font-size:11px;color:var(--muted)">'+p.dept+' &middot; '+p.sorumlu+'</div></div><div style="text-align:right;flex-shrink:0">'+statusBadge(p.durum)+'<div style="font-size:11px;font-weight:600;color:'+pc+';margin-top:2px">'+prog+'%</div></div></div>';}).join('') : '<div style="text-align:center;padding:20px;color:var(--muted);font-size:13px">&#10003; Kritik proje yok</div>'}
       </div>
       <div style="background:white;border:1.5px solid var(--border);border-radius:12px;padding:20px">
-        <div style="font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);margin-bottom:14px">&#127970; Departman &#214;zeti</div>
+        <div style="font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);margin-bottom:14px">&#127970; Departman &#214;zeti</div>
         <div style="display:flex;flex-direction:column;gap:8px">
-          ${[...new Set(allProjects.map(p=>p.dept).filter(Boolean))].sort().map(d=>{const ps=allProjects.filter(p=>p.dept===d);const avgD=ps.length?Math.round(ps.reduce((s,p)=>s+calcStepProgress(p.id),0)/ps.length):0;const dc=avgD>=80?'var(--green)':avgD>=40?'var(--yellow)':'var(--red)';const risk=ps.filter(p=>p.durum==='Geride').length;return '<div style="display:flex;align-items:center;gap:10px"><span style="font-size:12px;font-weight:600;color:var(--navy);width:80px;flex-shrink:0">'+d+'</span><div style="flex:1;height:8px;background:var(--cream-dark);border-radius:4px;overflow:hidden"><div style="height:100%;background:'+dc+';width:'+avgD+'%;border-radius:4px"></div></div><span style="font-size:12px;font-weight:800;color:'+dc+';min-width:32px">'+avgD+'%</span><span style="font-size:11px;font-weight:700;color:var(--navy);min-width:16px">'+ps.length+'</span>'+(risk?'<span style="font-size:10px;background:#fee2e2;color:var(--red);padding:1px 6px;border-radius:10px;font-weight:700">'+risk+'&#9888;</span>':'')+'</div>';}).join('')}
+          ${[...new Set(allProjects.map(p=>p.dept).filter(Boolean))].sort().map(d=>{const ps=allProjects.filter(p=>p.dept===d);const avgD=ps.length?Math.round(ps.reduce((s,p)=>s+calcStepProgress(p.id),0)/ps.length):0;const dc=avgD>=80?'var(--green)':avgD>=40?'var(--yellow)':'var(--red)';const risk=ps.filter(p=>p.durum==='Geride').length;return '<div style="display:flex;align-items:center;gap:10px"><span style="font-size:12px;font-weight:600;color:var(--navy);width:80px;flex-shrink:0">'+d+'</span><div style="flex:1;height:8px;background:var(--cream-dark);border-radius:4px;overflow:hidden"><div style="height:100%;background:'+dc+';width:'+avgD+'%;border-radius:4px"></div></div><span style="font-size:12px;font-weight:600;color:'+dc+';min-width:32px">'+avgD+'%</span><span style="font-size:11px;font-weight:600;color:var(--navy);min-width:16px">'+ps.length+'</span>'+(risk?'<span style="font-size:10px;background:#fee2e2;color:var(--red);padding:1px 6px;border-radius:10px;font-weight:600">'+risk+'&#9888;</span>':'')+'</div>';}).join('')}
         </div>
       </div>
     </div>
@@ -1649,12 +1649,12 @@ function renderDashboard() {
 
   // ── Özet kartlar
   document.getElementById('dash-kpis').innerHTML = `
-    <div class="kpi-card c-navy" onclick="filterProjeler('')"><div class="kpi-lbl">Toplam Proje</div><div class="kpi-val">${tot}</div><div class="kpi-sub">Tüm portföy</div></div>
-    <div class="kpi-card c-gold" onclick="filterProjeler('Devam Ediyor','genel_durum')"><div class="kpi-lbl">Aktif</div><div class="kpi-val">${akt}</div><div class="kpi-sub">Devam ediyor</div></div>
-    <div class="kpi-card c-green" onclick="filterProjeler('Tamamlandı','genel_durum')"><div class="kpi-lbl">Tamamlanan</div><div class="kpi-val">${tam}</div><div class="kpi-sub">Başarılı</div></div>
-    <div class="kpi-card c-red" onclick="filterProjeler('Geride','durum')"><div class="kpi-lbl">Geride</div><div class="kpi-val">${gec}</div><div class="kpi-sub">Aksiyon gerekli</div></div>
-    <div class="kpi-card c-blue" onclick="filterProjeler('Askıya Alındı','genel_durum')"><div class="kpi-lbl">Askıda</div><div class="kpi-val">${ask}</div><div class="kpi-sub">Askıya Alındı</div></div>
-    <div class="kpi-card c-navy" style="cursor:default"><div class="kpi-lbl">Ort. İlerleme</div><div class="kpi-val" style="color:${progColor}">${avgProg}%</div><div class="kpi-sub">Tüm adımlar</div></div>`;
+    <div class="kpi-card c-navy" onclick="filterProjeler('')"><div class="kpi-val">${tot}</div><div class="kpi-lbl">Toplam Proje</div><div class="kpi-sub">Tüm portföy</div></div>
+    <div class="kpi-card c-gold" onclick="filterProjeler('Devam Ediyor','genel_durum')"><div class="kpi-val">${akt}</div><div class="kpi-lbl">Aktif</div><div class="kpi-sub">Devam ediyor</div></div>
+    <div class="kpi-card c-green" onclick="filterProjeler('Tamamlandı','genel_durum')"><div class="kpi-val">${tam}</div><div class="kpi-lbl">Tamamlanan</div><div class="kpi-sub">Başarılı</div></div>
+    <div class="kpi-card c-red" onclick="filterProjeler('Geride','durum')"><div class="kpi-val">${gec}</div><div class="kpi-lbl">Geride</div><div class="kpi-sub">Aksiyon gerekli</div></div>
+    <div class="kpi-card c-blue" onclick="filterProjeler('Askıya Alındı','genel_durum')"><div class="kpi-val">${ask}</div><div class="kpi-lbl">Askıda</div><div class="kpi-sub">Askıya Alındı</div></div>
+    <div class="kpi-card c-navy" style="cursor:default"><div class="kpi-val" style="color:${progColor}">${avgProg}%</div><div class="kpi-lbl">Ort. İlerleme</div><div class="kpi-sub">Tüm adımlar</div></div>`;
 
   // ── Departman tablosu (overall)
   const depts = [...new Set(allProjects.map(p=>p.dept).filter(Boolean))].sort();
@@ -1664,17 +1664,17 @@ function renderDashboard() {
     const dc = avgD>=80?'var(--green)':avgD>=40?'var(--yellow)':'var(--red)';
     return `<tr style="border-bottom:1px solid var(--cream-dark)">
       <td style="padding:9px 14px;font-weight:600;font-size:13px">${d}</td>
-      <td style="padding:9px 14px;text-align:center;font-weight:700">${ps.length}</td>
-      <td style="padding:9px 14px;text-align:center;color:var(--blue);font-weight:700">${ps.filter(p=>p.genel_durum==='Devam Ediyor').length}</td>
-      <td style="padding:9px 14px;text-align:center;color:var(--green);font-weight:700">${ps.filter(p=>p.genel_durum==='Tamamlandı').length}</td>
-      <td style="padding:9px 14px;text-align:center;color:var(--red);font-weight:700">${ps.filter(p=>p.durum==='Geride').length}</td>
-      <td style="padding:9px 14px;text-align:center;color:var(--yellow);font-weight:700">${ps.filter(p=>p.genel_durum==='Askıda').length}</td>
+      <td style="padding:9px 14px;text-align:center;font-weight:600">${ps.length}</td>
+      <td style="padding:9px 14px;text-align:center;color:var(--blue);font-weight:600">${ps.filter(p=>p.genel_durum==='Devam Ediyor').length}</td>
+      <td style="padding:9px 14px;text-align:center;color:var(--green);font-weight:600">${ps.filter(p=>p.genel_durum==='Tamamlandı').length}</td>
+      <td style="padding:9px 14px;text-align:center;color:var(--red);font-weight:600">${ps.filter(p=>p.durum==='Geride').length}</td>
+      <td style="padding:9px 14px;text-align:center;color:var(--yellow);font-weight:600">${ps.filter(p=>p.genel_durum==='Askıda').length}</td>
       <td style="padding:9px 14px">
         <div style="display:flex;align-items:center;gap:8px">
           <div style="flex:1;height:6px;background:var(--cream-dark);border-radius:3px;overflow:hidden">
             <div style="height:100%;background:${dc};width:${avgD}%;border-radius:3px"></div>
           </div>
-          <span style="font-size:12px;font-weight:700;color:${dc};min-width:32px">${avgD}%</span>
+          <span style="font-size:12px;font-weight:600;color:${dc};min-width:32px">${avgD}%</span>
         </div>
       </td>
     </tr>`;
@@ -1713,22 +1713,22 @@ function renderDashboard() {
         <div style="padding-left:8px">
           <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
             <span style="font-size:22px">${cfg.icon}</span>
-            <span style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:${cfg.color}">${a}</span>
+            <span style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:${cfg.color}">${a}</span>
           </div>
-          <div style="font-family:'Syne',sans-serif;font-size:32px;font-weight:800;color:var(--navy);line-height:1">${ps.length}</div>
+          <div style="font-family:'Inter',sans-serif;font-size:32px;font-weight:600;color:var(--navy);line-height:1">${ps.length}</div>
           <div style="font-size:11px;color:var(--muted);margin-bottom:8px">proje</div>
           <div style="display:flex;align-items:center;gap:6px">
             <div style="flex:1;height:4px;background:var(--cream-dark);border-radius:2px;overflow:hidden">
               <div style="height:100%;background:${cfg.color};width:${avgA}%"></div>
             </div>
-            <span style="font-size:11px;font-weight:700;color:${cfg.color}">${avgA}%</span>
+            <span style="font-size:11px;font-weight:600;color:${cfg.color}">${avgA}%</span>
           </div>
           <div style="margin-top:6px;font-size:10px;color:var(--muted)">
             ${ps.filter(p=>p.genel_durum==='Devam Ediyor').length} aktif · ${ps.filter(p=>p.genel_durum==='Tamamlandı').length} tamam · ${ps.filter(p=>p.durum==='Geride').length} geride
           </div>
         </div>
       </div>`;
-    }).join('') + (noAsama ? `<div style="background:var(--cream);border:1.5px dashed var(--border);border-radius:10px;padding:14px 18px;display:flex;align-items:center;gap:10px;color:var(--muted)"><span style="font-size:20px">❓</span><div><div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px">Atanmamış</div><div style="font-size:18px;font-weight:800;color:var(--text)">${noAsama}</div></div></div>` : '');
+    }).join('') + (noAsama ? `<div style="background:var(--cream);border:1.5px dashed var(--border);border-radius:10px;padding:14px 18px;display:flex;align-items:center;gap:10px;color:var(--muted)"><span style="font-size:20px">❓</span><div><div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1px">Atanmamış</div><div style="font-size:18px;font-weight:600;color:var(--text)">${noAsama}</div></div></div>` : '');
   }
 
   // ── Stratejik Hizalanma Özeti
@@ -1775,19 +1775,19 @@ function renderDashAlignment() {
         +'<div style="width:4px;min-height:44px;border-radius:2px;background:'+obColor+';flex-shrink:0;align-self:stretch"></div>'
         // Orta: başlık + meta
         +'<div style="flex:1;min-width:0">'
-        +'<div style="font-size:13px;font-weight:700;color:var(--navy);margin-bottom:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+ob.baslik+'</div>'
+        +'<div style="font-size:13px;font-weight:600;color:var(--navy);margin-bottom:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+ob.baslik+'</div>'
         +'<div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">'
         +'<span style="font-size:11px;color:var(--muted)">'+linked.length+' proje</span>'
         +(aktif?'<span style="font-size:11px;background:#dbeafe;color:#1d4ed8;padding:1px 7px;border-radius:10px;font-weight:600">'+aktif+' aktif</span>':'')
         +(obDone?'<span style="font-size:11px;background:#dcfce7;color:var(--green);padding:1px 7px;border-radius:10px;font-weight:600">'+obDone+' tamam</span>':'')
-        +(obGec?'<span style="font-size:11px;background:#fee2e2;color:var(--red);padding:1px 7px;border-radius:10px;font-weight:700">'+obGec+' geride</span>':'')
+        +(obGec?'<span style="font-size:11px;background:#fee2e2;color:var(--red);padding:1px 7px;border-radius:10px;font-weight:600">'+obGec+' geride</span>':'')
         +'</div>'
         // İlerleme çubuğu
         +'<div style="margin-top:7px;height:5px;background:var(--cream-dark);border-radius:3px;overflow:hidden">'
         +'<div style="height:100%;background:'+obColor+';width:'+obAvg+'%;border-radius:3px;transition:width 0.4s"></div></div>'
         +'</div>'
         // Sağ: yüzde
-        +'<div style="font-family:\'Syne\',sans-serif;font-size:22px;font-weight:800;color:'+obColor+';flex-shrink:0">'+obAvg+'%</div>'
+        +'<div style="font-family:\'Inter\',sans-serif;font-size:22px;font-weight:600;color:'+obColor+';flex-shrink:0;font-feature-settings:\'tnum\'">'+obAvg+'%</div>'
         +'</div>';
     }).filter(function(x){return !!x;}).join('');
 
@@ -1802,13 +1802,13 @@ function renderDashAlignment() {
       +'<div style="display:flex;align-items:center;gap:12px;padding:14px 18px;background:var(--navy)">'
       +'<span style="font-size:22px">'+sg.icon+'</span>'
       +'<div style="flex:1;min-width:0">'
-      +'<div style="font-size:14px;font-weight:800;color:white;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+sg.baslik+'</div>'
+      +'<div style="font-size:14px;font-weight:600;color:white;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+sg.baslik+'</div>'
       +'<div style="font-size:11px;color:rgba(255,255,255,0.55);margin-top:2px">'+activeObCount+' alt hedef \u00b7 '+sgProjects.length+' proje</div>'
       +'</div>'
       +'<div style="display:flex;align-items:center;gap:10px">'
-      +(sgGec?'<span style="font-size:11px;background:rgba(231,76,60,0.35);color:#ff8080;padding:2px 10px;border-radius:10px;font-weight:700">'+sgGec+' geride</span>':'')
-      +(sgDone?'<span style="font-size:11px;background:rgba(39,174,96,0.25);color:#6ee7b7;padding:2px 10px;border-radius:10px;font-weight:700">'+sgDone+' tamam</span>':'')
-      +'<span style="font-family:\'Syne\',sans-serif;font-size:22px;font-weight:800;color:'+sgColor+'">'+sgAvg+'%</span>'
+      +(sgGec?'<span style="font-size:11px;background:rgba(231,76,60,0.35);color:#ff8080;padding:2px 10px;border-radius:10px;font-weight:600">'+sgGec+' geride</span>':'')
+      +(sgDone?'<span style="font-size:11px;background:rgba(39,174,96,0.25);color:#6ee7b7;padding:2px 10px;border-radius:10px;font-weight:600">'+sgDone+' tamam</span>':'')
+      +'<span style="font-family:\'Inter\',sans-serif;font-size:22px;font-weight:600;color:'+sgColor+';font-feature-settings:\'tnum\'">'+sgAvg+'%</span>'
       +'<div style="width:80px;height:7px;background:rgba(255,255,255,0.15);border-radius:4px;overflow:hidden">'
       +'<div style="height:100%;background:'+sgColor+';width:'+sgAvg+'%;border-radius:4px;transition:width 0.4s"></div></div>'
       +'</div></div>'
@@ -1925,8 +1925,8 @@ function selectProj(id) {
         </div>
       </div>
       <div class="pd-header-badges">
-        ${(() => { const gd = p.genel_durum || 'Devam Ediyor'; const cfg = GENEL_DURUM_CFG[gd]; return `<span style="display:inline-flex;align-items:center;gap:5px;padding:4px 12px;border-radius:12px;font-size:11px;font-weight:700;background:${cfg.bg};color:${cfg.color};border:1.5px solid ${cfg.color}">${cfg.icon} ${gd}</span>`; })()}
-        ${p.asama ? `<span style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:12px;font-size:11px;font-weight:700;background:${(ASAMA_CFG[p.asama]||{}).bg||'#eee'};color:${(ASAMA_CFG[p.asama]||{}).color||'#666'}">${(ASAMA_CFG[p.asama]||{}).icon||''} ${p.asama}</span>` : ''}
+        ${(() => { const gd = p.genel_durum || 'Devam Ediyor'; const cfg = GENEL_DURUM_CFG[gd]; return `<span style="display:inline-flex;align-items:center;gap:5px;padding:4px 12px;border-radius:12px;font-size:11px;font-weight:600;background:${cfg.bg};color:${cfg.color};border:1.5px solid ${cfg.color}">${cfg.icon} ${gd}</span>`; })()}
+        ${p.asama ? `<span style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:12px;font-size:11px;font-weight:600;background:${(ASAMA_CFG[p.asama]||{}).bg||'#eee'};color:${(ASAMA_CFG[p.asama]||{}).color||'#666'}">${(ASAMA_CFG[p.asama]||{}).icon||''} ${p.asama}</span>` : ''}
         ${p.risk ? statusBadge(p.risk) : ''}
       </div>
     </div>
@@ -1944,7 +1944,7 @@ function selectProj(id) {
             const cfg = GENEL_DURUM_CFG[gd];
             const active = (p.genel_durum||'Devam Ediyor') === gd;
             return `<button onclick="setGenelDurum('${id}','${gd}')" style="
-              display:flex;align-items:center;gap:6px;padding:7px 14px;border-radius:20px;font-size:12px;font-weight:700;cursor:pointer;transition:all 0.15s;
+              display:flex;align-items:center;gap:6px;padding:7px 14px;border-radius:20px;font-size:12px;font-weight:600;cursor:pointer;transition:all 0.15s;
               background:${active ? cfg.color : cfg.bg};
               color:${active ? 'white' : cfg.color};
               border:2px solid ${active ? cfg.color : 'transparent'};
@@ -1956,7 +1956,7 @@ function selectProj(id) {
           ${(() => {
             const gd = p.genel_durum || 'Devam Ediyor';
             const cfg = GENEL_DURUM_CFG[gd];
-            return `<span style="display:inline-flex;align-items:center;gap:6px;padding:7px 16px;border-radius:20px;font-size:13px;font-weight:700;background:${cfg.bg};color:${cfg.color};border:2px solid ${cfg.color}">${cfg.icon} ${gd}</span>`;
+            return `<span style="display:inline-flex;align-items:center;gap:6px;padding:7px 16px;border-radius:20px;font-size:13px;font-weight:600;background:${cfg.bg};color:${cfg.color};border:2px solid ${cfg.color}">${cfg.icon} ${gd}</span>`;
           })()}
         </div>`}
       </div>
@@ -1964,7 +1964,7 @@ function selectProj(id) {
         <div class="pd-section-title">Genel İlerleme</div>
         <div style="display:flex;align-items:center;gap:12px;margin-bottom:4px">
           <div class="prog-wide" style="flex:1"><div class="prog-wide-fill" style="width:${pct}%;background:${progColor}"></div></div>
-          <div style="font-family:'Syne',sans-serif;font-weight:800;font-size:20px;color:${progColor};min-width:42px;text-align:right">${pct}%</div>
+          <div style="p0;font-size:20px;color:${progColor};min-width:42px;text-align:right">${pct}%</div>
         </div>
         <div style="font-size:11px;color:var(--muted)">${stepSub}</div>
       </div>
@@ -1979,7 +1979,7 @@ function selectProj(id) {
           ${p.butce ? `<div class="pd-meta-item"><div class="pd-meta-label">Bütçe</div><div class="pd-meta-value">${fmtMoney(p.butce)}</div></div>` : ''}
           ${p.harcanan ? `<div class="pd-meta-item"><div class="pd-meta-label">Harcanan</div><div class="pd-meta-value">${fmtMoney(p.harcanan)}</div></div>` : ''}
         </div>
-        ${p.aciklama ? `<div style="margin-top:12px"><div style="font-size:9px;font-weight:800;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:5px">PROJE AÇIKLAMASI</div><div style="padding:10px 12px;background:var(--cream);border-radius:7px;font-size:13px;color:var(--text);line-height:1.5">${p.aciklama}</div></div>` : ''}
+        ${p.aciklama ? `<div style="margin-top:12px"><div style="font-size:9px;font-weight:600;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:5px">PROJE AÇIKLAMASI</div><div style="padding:10px 12px;background:var(--cream);border-radius:7px;font-size:13px;color:var(--text);line-height:1.5">${p.aciklama}</div></div>` : ''}
       </div>
 
       <!-- Proje Adımları -->
@@ -1996,7 +1996,7 @@ function selectProj(id) {
           const pc = pct>=80?'var(--green)':pct>=40?'var(--yellow)':'var(--red)';
           return `<div class="step-row" style="flex-direction:column;align-items:stretch;gap:0;padding:10px 14px">
             <div style="display:flex;align-items:center;gap:10px">
-              <div style="font-size:10px;font-weight:800;color:var(--muted);min-width:18px;text-align:center">${si+1}</div>
+              <div style="font-size:10px;font-weight:600;color:var(--muted);min-width:18px;text-align:center">${si+1}</div>
               <div class="step-circle ${stepCircleClass[s.durum]||'sc-wait'}" style="flex-shrink:0">${stepIcon[s.durum]||'–'}</div>
               <div class="step-info" style="flex:1;min-width:0">
                 <div class="step-name" style="white-space:normal;word-break:break-word">${s.ad}</div>
@@ -2005,7 +2005,7 @@ function selectProj(id) {
               </div>
               <div style="display:flex;align-items:center;gap:6px;flex-shrink:0">
                 ${statusBadge(s.durum)}
-                <div style="font-size:12px;font-weight:800;color:${pc};min-width:32px;text-align:right">${pct}%</div>
+                <div style="font-size:12px;font-weight:600;color:${pc};min-width:32px;text-align:right">${pct}%</div>
                 ${canEdit ? `
                   <button onclick="moveStep('${id}','${s.id}',-1)" title="Yukarı" style="border:none;background:none;cursor:pointer;color:var(--muted);font-size:13px;padding:2px 4px" ${si===0?'disabled style="opacity:0.2"':''}>▲</button>
                   <button onclick="moveStep('${id}','${s.id}',1)" title="Aşağı" style="border:none;background:none;cursor:pointer;color:var(--muted);font-size:13px;padding:2px 4px" ${si===steps.length-1?'disabled style="opacity:0.2"':''}>▼</button>
@@ -2034,7 +2034,7 @@ function selectProj(id) {
                 <div style="display:flex;gap:4px">
                   ${[0,25,50,75,100].map(v=>{const isActive=pct===v;return `<button onclick="quickSetStep('${s.id}',${v})" style="font-size:9px;padding:1px 6px;border:1.5px solid ${isActive?'var(--navy)':'var(--border)'};border-radius:3px;background:${isActive?'var(--navy)':'white'};color:${isActive?'white':'var(--muted)'};cursor:pointer;font-weight:${isActive?'700':'400'}">${v}%</button>`;}).join('')}
                 </div>
-                <span id="lbl-${s.id}" style="font-size:11px;font-weight:800;color:${pc}">${pct}%</span>
+                <span id="lbl-${s.id}" style="font-size:11px;font-weight:600;color:${pc}">${pct}%</span>
               </div>
             </div>` : ''}
           </div>`;
@@ -2058,7 +2058,7 @@ function selectProj(id) {
           ${isAdmin() || p.sorumlu===currentProfile?.full_name ? `
           <div style="display:flex;align-items:center;gap:8px">
             <input type="date" id="upd-inline-${id}" value="${p.updated_at||''}"
-              style="padding:6px 10px;border:1.5px solid var(--border);border-radius:8px;font-size:12px;font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text)">
+              style="padding:6px 10px;border:1.5px solid var(--border);border-radius:8px;font-size:12px;font-family:'Inter',sans-serif;background:var(--cream);color:var(--text)">
             <button onclick="saveUpdatedAt('${id}')" class="btn btn-primary btn-sm">Kaydet</button>
           </div>` : ''}
         </div>
@@ -2078,7 +2078,7 @@ function selectProj(id) {
             </div>
             <div style="display:flex;align-items:center;gap:8px">
               <div class="prog-wide" style="flex:1"><div class="prog-wide-fill" style="width:${pct2}%;background:${kc}"></div></div>
-              <div style="font-size:11px;font-weight:700;color:${kc};min-width:30px;text-align:right">${pct2}%</div>
+              <div style="font-size:11px;font-weight:600;color:${kc};min-width:30px;text-align:right">${pct2}%</div>
               ${statusBadge(k.durum)}
             </div>
           </div>`;
@@ -2187,7 +2187,7 @@ function showProjModal(id) {
     <div style="display:flex;align-items:center;gap:10px">
       <div style="width:36px;height:36px;border-radius:10px;background:var(--navy);display:flex;align-items:center;justify-content:center;font-size:18px">${id ? '✏️' : '➕'}</div>
       <div>
-        <div style="font-size:16px;font-weight:800;color:var(--navy)">${id ? 'Proje Düzenle' : 'Yeni Proje'}</div>
+        <div style="font-size:16px;font-weight:600;color:var(--navy)">${id ? 'Proje Düzenle' : 'Yeni Proje'}</div>
         ${id ? `<div style="font-size:11px;color:var(--muted);font-weight:400;margin-top:1px">${p.ad||''}</div>` : ''}
       </div>
     </div>`;
@@ -2196,7 +2196,7 @@ function showProjModal(id) {
 
       <!-- BÖLÜM 1: Temel Bilgiler -->
       <div style="padding:16px 0;border-bottom:1px solid var(--cream-dark)">
-        <div style="font-size:10px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:12px">📋 Temel Bilgiler</div>
+        <div style="font-size:10px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:12px">📋 Temel Bilgiler</div>
         <div class="form-grid">
           <div class="form-group full">
             <div class="form-label">Proje Adı <span style="color:var(--red)">*</span></div>
@@ -2220,7 +2220,7 @@ function showProjModal(id) {
 
       <!-- BÖLÜM 2: Süreç & Durum -->
       <div style="padding:16px 0;border-bottom:1px solid var(--cream-dark)">
-        <div style="font-size:10px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:12px">🚦 Süreç & Durum</div>
+        <div style="font-size:10px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:12px">🚦 Süreç & Durum</div>
         <div class="form-grid">
           <div class="form-group">
             <div class="form-label">Aşama</div>
@@ -2228,7 +2228,7 @@ function showProjModal(id) {
               ${PROJ_ASAMALAR.map(a => {
                 const cfg = ASAMA_CFG[a];
                 const active = (p.asama||'') === a;
-                return '<button type="button" onclick="selectAsama(this,\''+a+'\')" class="asama-btn" style="padding:6px 12px;border-radius:20px;border:1.5px solid '+(active?cfg.color:'var(--border)')+';background:'+(active?cfg.bg:'white')+';color:'+(active?cfg.color:'var(--muted)')+';font-size:12px;font-weight:700;cursor:pointer;transition:all 0.15s">'+cfg.icon+' '+a+'</button>';
+                return '<button type="button" onclick="selectAsama(this,\''+a+'\')" class="asama-btn" style="padding:6px 12px;border-radius:20px;border:1.5px solid '+(active?cfg.color:'var(--border)')+';background:'+(active?cfg.bg:'white')+';color:'+(active?cfg.color:'var(--muted)')+';font-size:12px;font-weight:600;cursor:pointer;transition:all 0.15s">'+cfg.icon+' '+a+'</button>';
               }).join('')}
               <input type="hidden" id="f-asama-val" value="${p.asama||''}">
             </div>
@@ -2242,7 +2242,7 @@ function showProjModal(id) {
             <div style="display:flex;gap:6px">
               ${[{v:'Yüksek',c:'var(--red)'},{v:'Orta',c:'var(--yellow)'},{v:'Düşük',c:'var(--green)'}].map(r=>{
                 const active = (p.risk||'Orta') === r.v;
-                return '<button type="button" onclick="selectRisk(this,\''+r.v+'\')" class="risk-btn" style="flex:1;padding:6px 0;border-radius:8px;border:1.5px solid '+(active?r.c:'var(--border)')+';background:'+(active?r.c+'22':'white')+';color:'+(active?r.c:'var(--muted)')+';font-size:12px;font-weight:700;cursor:pointer;transition:all 0.15s">'+r.v+'</button>';
+                return '<button type="button" onclick="selectRisk(this,\''+r.v+'\')" class="risk-btn" style="flex:1;padding:6px 0;border-radius:8px;border:1.5px solid '+(active?r.c:'var(--border)')+';background:'+(active?r.c+'22':'white')+';color:'+(active?r.c:'var(--muted)')+';font-size:12px;font-weight:600;cursor:pointer;transition:all 0.15s">'+r.v+'</button>';
               }).join('')}
               <input type="hidden" id="f-risk-val" value="${p.risk||'Orta'}">
             </div>
@@ -2252,7 +2252,7 @@ function showProjModal(id) {
 
       <!-- BÖLÜM 3: Tarihler -->
       <div style="padding:16px 0;border-bottom:1px solid var(--cream-dark)">
-        <div style="font-size:10px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:12px">📅 Tarihler</div>
+        <div style="font-size:10px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:12px">📅 Tarihler</div>
         <div class="form-grid">
           <div class="form-group">
             <div class="form-label">Başlangıç</div>
@@ -2267,7 +2267,7 @@ function showProjModal(id) {
 
       <!-- BÖLÜM 4: Mali Bilgiler -->
       <div style="padding:16px 0;border-bottom:1px solid var(--cream-dark)">
-        <div style="font-size:10px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:12px">💰 Mali Bilgiler</div>
+        <div style="font-size:10px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:12px">💰 Mali Bilgiler</div>
         <div class="form-grid">
           <div class="form-group">
             <div class="form-label">Bütçe (TL)</div>
@@ -2282,7 +2282,7 @@ function showProjModal(id) {
 
       <!-- BÖLÜM 5: Stratejik Hedef Bağlantısı -->
       <div style="padding:16px 0;border-bottom:1px solid var(--cream-dark)">
-        <div style="font-size:10px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:12px">🎯 Stratejik Hedef Bağlantısı</div>
+        <div style="font-size:10px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:12px">🎯 Stratejik Hedef Bağlantısı</div>
         <div style="font-size:11px;color:var(--muted);margin-bottom:10px">Bu projenin katkıda bulunduğu stratejik hedefleri seçin (çoklu seçim)</div>
         <div id="f-goals-wrap" style="display:flex;flex-direction:column;gap:8px">
           ${STRATEGIC_GOALS.map(sg => {
@@ -2290,7 +2290,7 @@ function showProjModal(id) {
             return '<div style="border:1.5px solid var(--border);border-radius:8px;overflow:hidden">' +
               '<div style="background:var(--navy);padding:6px 12px;display:flex;align-items:center;gap:8px">' +
                 '<span style="font-size:14px">' + sg.icon + '</span>' +
-                '<span style="font-size:11px;font-weight:700;color:white">' + sg.baslik + '</span>' +
+                '<span style="font-size:11px;font-weight:600;color:white">' + sg.baslik + '</span>' +
               '</div>' +
               '<div style="padding:8px 12px;display:flex;flex-direction:column;gap:6px">' +
                 sg.hedefler.map(ob => {
@@ -2308,7 +2308,7 @@ function showProjModal(id) {
 
       <!-- BÖLÜM 6: Açıklama -->
       <div style="padding:16px 0">
-        <div style="font-size:10px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:12px">📝 Proje Açıklaması</div>
+        <div style="font-size:10px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:12px">📝 Proje Açıklaması</div>
         <textarea class="form-textarea" id="f-acik" placeholder="Projeyi kısaca açıklayın..." style="min-height:80px;width:100%">${p.aciklama||''}</textarea>
       </div>
 
@@ -2563,10 +2563,10 @@ function renderKPI() {
         <!-- Proje başlığı -->
         <div style="padding:12px 16px;background:var(--navy);display:flex;align-items:center;justify-content:space-between">
           <div>
-            <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:14px;color:white">${p.ad}</div>
+            <div style="p0;font-size:14px;color:white">${p.ad}</div>
             <div style="font-size:11px;color:rgba(255,255,255,0.5);margin-top:2px">${p.dept} · ${kpis.length} KPI</div>
           </div>
-          <div style="font-family:'Syne',sans-serif;font-weight:800;font-size:18px;color:${pColor}">${avgPct}%</div>
+          <div style="p0;font-size:18px;color:${pColor}">${avgPct}%</div>
         </div>
         <!-- KPI listesi -->
         <div style="padding:8px 0">
@@ -2586,7 +2586,7 @@ function renderKPI() {
               </div>
               <div style="display:flex;align-items:center;gap:10px">
                 <div class="prog-wide" style="flex:1"><div class="prog-wide-fill" style="width:${pct}%;background:${kc}"></div></div>
-                <div style="font-size:12px;font-weight:700;color:${kc};min-width:32px;text-align:right">${pct}%</div>
+                <div style="font-size:12px;font-weight:600;color:${kc};min-width:32px;text-align:right">${pct}%</div>
               </div>
               ${k.sorumlu ? `<div style="font-size:11px;color:var(--muted);margin-top:4px">${k.sorumlu}${k.donem?' · '+k.donem:''}</div>` : ''}
             </div>`;
@@ -2729,7 +2729,7 @@ function showAdimModal(id, defaultProjId) {
       <div class="form-group full">
         <div class="form-label" style="display:flex;justify-content:space-between;align-items:center">
           <span>İlerleme</span>
-          <span id="a-ile-display" style="font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:var(--navy)">${a.ilerleme||0}%</span>
+          <span id="a-ile-display" style="font-family:'Inter',sans-serif;font-size:18px;font-weight:600;color:var(--navy)">${a.ilerleme||0}%</span>
         </div>
         <!-- Slider -->
         <div style="position:relative;margin:8px 0 4px">
@@ -2744,7 +2744,7 @@ function showAdimModal(id, defaultProjId) {
         <div style="display:flex;gap:6px;flex-wrap:wrap">
           ${[0,10,25,50,75,90,100].map(v=>`
             <button type="button" onclick="setIlerleme(${v})" style="
-              padding:4px 10px;border-radius:12px;font-size:11px;font-weight:700;cursor:pointer;transition:all 0.15s;
+              padding:4px 10px;border-radius:12px;font-size:11px;font-weight:600;cursor:pointer;transition:all 0.15s;
               background:${(a.ilerleme||0)===v?'var(--navy)':'var(--cream)'};
               color:${(a.ilerleme||0)===v?'white':'var(--navy)'};
               border:1.5px solid ${(a.ilerleme||0)===v?'var(--navy)':'var(--border)'}
@@ -2848,21 +2848,21 @@ function openAlignModal(obId, obBaslik) {
   if (!ob) return;
   const assigned = allProjects.filter(p=>(p.strategic_goal_ids||[]).includes(obId));
   const unassigned = allProjects.filter(p=>!(p.strategic_goal_ids||[]).includes(obId));
-  document.getElementById('m-title').innerHTML = `<div style="font-size:14px;font-weight:800;color:var(--navy)">🎯 Proje Ata: ${obBaslik}</div>`;
+  document.getElementById('m-title').innerHTML = `<div style="font-size:14px;font-weight:600;color:var(--navy)">🎯 Proje Ata: ${obBaslik}</div>`;
   document.getElementById('m-body').innerHTML = `
     <div style="margin-bottom:16px">
-      <div style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">Atanmış Projeler (${assigned.length})</div>
+      <div style="font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">Atanmış Projeler (${assigned.length})</div>
       ${assigned.length ? assigned.map(p=>`
         <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 12px;background:var(--cream);border-radius:7px;margin-bottom:6px">
           <div>
             <div style="font-size:13px;font-weight:600;color:var(--navy)">${p.ad}</div>
             <div style="font-size:11px;color:var(--muted)">${p.dept} · ${p.sorumlu}</div>
           </div>
-          <button onclick="removeAlignment('${p.id}','${obId}')" style="padding:4px 10px;border-radius:6px;border:1px solid var(--red);background:white;color:var(--red);font-size:11px;font-weight:700;cursor:pointer">✕ Kaldır</button>
+          <button onclick="removeAlignment('${p.id}','${obId}')" style="padding:4px 10px;border-radius:6px;border:1px solid var(--red);background:white;color:var(--red);font-size:11px;font-weight:600;cursor:pointer">✕ Kaldır</button>
         </div>`).join('') : '<div style="font-size:12px;color:var(--muted);padding:8px 0">Henüz proje atanmamış</div>'}
     </div>
     <div>
-      <div style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">Proje Ekle</div>
+      <div style="font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">Proje Ekle</div>
       <input class="search-inp" placeholder="Proje ara..." oninput="filterAlignProjs(this.value,'${obId}')" style="width:100%;margin-bottom:8px">
       <div id="align-proj-list" style="max-height:200px;overflow-y:auto;display:flex;flex-direction:column;gap:6px">
         ${unassigned.map(p=>`
@@ -2871,7 +2871,7 @@ function openAlignModal(obId, obBaslik) {
               <div style="font-size:13px;font-weight:600;color:var(--navy)">${p.ad}</div>
               <div style="font-size:11px;color:var(--muted)">${p.dept} · ${p.sorumlu}</div>
             </div>
-            <button onclick="addAlignment('${p.id}','${obId}')" style="padding:4px 10px;border-radius:6px;border:1.5px solid var(--navy);background:var(--navy);color:white;font-size:11px;font-weight:700;cursor:pointer">+ Ata</button>
+            <button onclick="addAlignment('${p.id}','${obId}')" style="padding:4px 10px;border-radius:6px;border:1.5px solid var(--navy);background:var(--navy);color:white;font-size:11px;font-weight:600;cursor:pointer">+ Ata</button>
           </div>`).join('')}
       </div>
     </div>`;
@@ -2960,8 +2960,8 @@ function renderAlignment() {
             <div style="width:4px;height:40px;border-radius:2px;background:${pColor};flex-shrink:0"></div>
             <div style="flex:1;min-width:0">
               <div style="display:flex;align-items:center;gap:8px;margin-bottom:3px;flex-wrap:wrap">
-                <span style="font-size:13px;font-weight:700;color:var(--text)">${p.ad}</span>
-                <span style="font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;background:${gdCfg.bg};color:${gdCfg.color}">${gdCfg.icon} ${gd}</span>
+                <span style="font-size:13px;font-weight:600;color:var(--text)">${p.ad}</span>
+                <span style="font-size:10px;font-weight:600;padding:2px 8px;border-radius:10px;background:${gdCfg.bg};color:${gdCfg.color}">${gdCfg.icon} ${gd}</span>
               </div>
               <div style="display:flex;align-items:center;gap:8px;font-size:11px;color:var(--muted);flex-wrap:wrap">
                 <span>${p.dept}</span><span>·</span><span>${p.sorumlu}</span><span>·</span>
@@ -2971,11 +2971,11 @@ function renderAlignment() {
               </div>
             </div>
             <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px;flex-shrink:0">
-              <div style="font-family:'Syne',sans-serif;font-size:16px;font-weight:800;color:${pColor}">${pct}%</div>
+              <div style="font-family:'Inter',sans-serif;font-size:16px;font-weight:600;color:${pColor}">${pct}%</div>
               <div style="width:80px;height:5px;background:var(--cream-dark);border-radius:3px;overflow:hidden">
                 <div style="height:100%;background:${pColor};width:${pct}%;border-radius:3px"></div>
               </div>
-              ${isAdmin() ? `<button onclick="removeAlignment('${p.id}','${ob.id}');event.stopPropagation()" style="padding:3px 8px;border-radius:5px;border:1px solid var(--red);background:white;color:var(--red);font-size:10px;font-weight:700;cursor:pointer;margin-top:2px">✕ Kaldır</button>` : ''}
+              ${isAdmin() ? `<button onclick="removeAlignment('${p.id}','${ob.id}');event.stopPropagation()" style="padding:3px 8px;border-radius:5px;border:1px solid var(--red);background:white;color:var(--red);font-size:10px;font-weight:600;cursor:pointer;margin-top:2px">✕ Kaldır</button>` : ''}
             </div>
           </div>`;
         }).join('');
@@ -2983,15 +2983,15 @@ function renderAlignment() {
         objectivesHtml += `<div style="margin-bottom:12px">
           <div style="display:flex;align-items:center;gap:10px;padding:10px 14px;background:var(--cream);border-radius:8px;margin-bottom:8px;border-left:3px solid var(--gold)">
             <div style="flex:1">
-              <div style="font-size:12px;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:0.5px">${ob.baslik}</div>
+              <div style="font-size:12px;font-weight:600;color:var(--navy);text-transform:uppercase;letter-spacing:0.5px">${ob.baslik}</div>
               <div style="font-size:11px;color:var(--muted);margin-top:2px">${projeler.length} proje</div>
             </div>
             <div style="display:flex;align-items:center;gap:8px;flex-shrink:0">
               <div style="width:60px;height:5px;background:var(--cream-dark);border-radius:3px;overflow:hidden">
                 <div style="height:100%;background:${obColor};width:${obPct}%;border-radius:3px"></div>
               </div>
-              <div style="font-size:12px;font-weight:700;color:${obColor};min-width:32px;text-align:right">${obPct}%</div>
-              ${isAdmin() ? `<button onclick="openAlignModal('${ob.id}','${ob.baslik.replace(/'/g,"\'")}');event.stopPropagation()" style="padding:4px 10px;border-radius:6px;border:1.5px solid var(--navy);background:var(--navy);color:white;font-size:11px;font-weight:700;cursor:pointer">+ Proje Ata</button>` : ''}
+              <div style="font-size:12px;font-weight:600;color:${obColor};min-width:32px;text-align:right">${obPct}%</div>
+              ${isAdmin() ? `<button onclick="openAlignModal('${ob.id}','${ob.baslik.replace(/'/g,"\'")}');event.stopPropagation()" style="padding:4px 10px;border-radius:6px;border:1.5px solid var(--navy);background:var(--navy);color:white;font-size:11px;font-weight:600;cursor:pointer">+ Proje Ata</button>` : ''}
             </div>
           </div>
           <div style="padding-left:20px;border-left:2px solid var(--cream-dark);margin-left:10px">${projHtml}</div>
@@ -3009,11 +3009,11 @@ function renderAlignment() {
         <div style="background:var(--navy);padding:16px 20px;display:flex;align-items:center;gap:14px">
           <div style="font-size:24px">${sg.icon}</div>
           <div style="flex:1">
-            <div style="font-family:'Syne',sans-serif;font-size:15px;font-weight:800;color:white">${sg.baslik}</div>
+            <div style="font-family:'Inter',sans-serif;font-size:15px;font-weight:600;color:white">${sg.baslik}</div>
             <div style="font-size:11px;color:rgba(255,255,255,0.5);margin-top:3px">${sg.aciklama}</div>
           </div>
           <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px;flex-shrink:0">
-            <div style="font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:${sgColor}">${sgPct}%</div>
+            <div style="font-family:'Inter',sans-serif;font-size:22px;font-weight:600;color:${sgColor}">${sgPct}%</div>
             <div style="width:100px;height:6px;background:rgba(255,255,255,0.15);border-radius:3px;overflow:hidden">
               <div style="height:100%;background:${sgColor};width:${sgPct}%;border-radius:3px"></div>
             </div>
@@ -3056,13 +3056,13 @@ function renderRaporTabBar() {
   const bar = document.getElementById('rapor-tab-bar');
   bar.innerHTML = raporState.map((t, i) => `
     <div style="display:flex;align-items:center;border-right:1px solid ${i===activeRaporTab?'rgba(255,255,255,0.1)':'var(--border)'};flex-shrink:0">
-      <button onclick="switchRaporTab(${i})" style="padding:11px 14px;border:none;background:${i===activeRaporTab?'var(--navy)':'white'};color:${i===activeRaporTab?'var(--gold-light)':'var(--navy)'};font-family:'Syne',sans-serif;font-weight:700;font-size:12px;cursor:pointer;letter-spacing:0.5px;white-space:nowrap;transition:all 0.15s">${t.label}</button>
+      <button onclick="switchRaporTab(${i})" style="padding:11px 14px;border:none;background:${i===activeRaporTab?'var(--navy)':'white'};color:${i===activeRaporTab?'var(--gold-light)':'var(--navy)'};p0;font-size:12px;cursor:pointer;letter-spacing:0.5px;white-space:nowrap;transition:all 0.15s">${t.label}</button>
       ${raporState.length > 1 ? `<button onclick="removeRaporTab(${i})" title="Kaldır" style="padding:0 8px 0 0;border:none;background:${i===activeRaporTab?'var(--navy)':'white'};color:${i===activeRaporTab?'rgba(255,255,255,0.4)':'#ccc'};font-size:14px;cursor:pointer;line-height:1;transition:all 0.15s" onmouseover="this.style.color='${i===activeRaporTab?'white':'var(--red)'}'" onmouseout="this.style.color='${i===activeRaporTab?'rgba(255,255,255,0.4)':'#ccc'}'">×</button>` : ''}
     </div>`).join('');
 }
 
 function addRaporTab() {
-  document.getElementById('m-title').innerHTML = '<div style="font-size:15px;font-weight:800;color:var(--navy)">📄 Yeni Rapor Sekmesi</div>';
+  document.getElementById('m-title').innerHTML = '<div style="font-size:15px;font-weight:600;color:var(--navy)">📄 Yeni Rapor Sekmesi</div>';
   document.getElementById('m-body').innerHTML = `
     <div class="form-group">
       <div class="form-label">Rapor Adı <span style="color:var(--red)">*</span></div>
@@ -3252,9 +3252,9 @@ function printCurrentRapor() {
   const content = document.getElementById('rapor-content').innerHTML;
   const w = window.open('', '_blank');
   w.document.write(`<html><head><title>${RAPOR_TABS[activeRaporTab].label}</title>
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
-      body{font-family:'DM Sans',sans-serif;margin:24px 32px;color:#0D1B2A}
+      body{font-family:'Inter',sans-serif;margin:24px 32px;color:#0D1B2A}
       :root{--navy:#0D1B2A;--gold:#C8922A;--gold-light:#E8B84B;--cream:#F5F0E8;--cream-dark:#EBE4D4;--border:#D9D0C0;--muted:#6B7A8D;--green:#2D7D46;--red:#C0392B;--blue:#1A6EA8;--yellow:#D4A017}
     </style></head><body>${content}</body></html>`);
   w.document.close();
@@ -3284,14 +3284,14 @@ function renderRapor() {
 
     <!-- BAŞLIK -->
     <div style="text-align:center;border-bottom:3px solid var(--navy);padding-bottom:20px;margin-bottom:28px">
-      <div style="font-family:'Syne',sans-serif;font-weight:800;font-size:22px;color:var(--navy)">TİRYAKİ AGRO HOLDİNG · T-Orch</div>
-      <div style="font-family:'Syne',sans-serif;font-weight:600;font-size:14px;color:var(--gold);margin-top:4px;letter-spacing:1px">${baslik.toUpperCase()}</div>
+      <div style="p0;font-size:22px;color:var(--navy)">TİRYAKİ AGRO HOLDİNG · T-Orch</div>
+      <div style="font-family:'Inter',sans-serif;font-weight:600;font-size:14px;color:var(--gold);margin-top:4px;letter-spacing:1px">${baslik.toUpperCase()}</div>
       <div style="font-size:12px;color:var(--muted);margin-top:8px">${now.toLocaleDateString('tr-TR',{day:'numeric',month:'long',year:'numeric'})} · ${projeler.length} proje</div>
     </div>
 
     ${!ozet ? '' : `
     <div style="margin-bottom:28px">
-      <div style="font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:var(--navy);border-left:4px solid var(--gold);padding-left:10px;margin-bottom:14px;text-transform:uppercase;letter-spacing:1px">${sn++}. Genel Özet</div>
+      <div style="font-family:'Inter',sans-serif;font-size:12px;font-weight:600;color:var(--navy);border-left:4px solid var(--gold);padding-left:10px;margin-bottom:14px;text-transform:uppercase;letter-spacing:1px">${sn++}. Genel Özet</div>
       <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:10px">
         ${[
           ['Toplam',     projeler.length,                                                    'var(--navy)'],
@@ -3302,7 +3302,7 @@ function renderRapor() {
         ].map(([l,v,c])=>`
           <div style="text-align:center;padding:14px 8px;background:var(--cream);border-radius:10px;border:1px solid var(--border)">
             <div style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;font-weight:600">${l}</div>
-            <div style="font-family:'Syne',sans-serif;font-size:28px;font-weight:800;color:${c};margin:4px 0">${v}</div>
+            <div style="font-family:'Inter',sans-serif;font-size:28px;font-weight:600;color:${c};margin:4px 0">${v}</div>
           </div>`).join('')}
       </div>
     </div>`}
@@ -3339,18 +3339,18 @@ function renderRapor() {
         <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
           <div style="width:12px;height:12px;border-radius:3px;background:${c.color};flex-shrink:0"></div>
           <span style="font-size:13px;color:var(--navy);flex:1">${c.label}</span>
-          <span style="font-size:13px;font-weight:700;color:var(--navy)">${c.count}</span>
+          <span style="font-size:13px;font-weight:600;color:var(--navy)">${c.count}</span>
           <span style="font-size:11px;color:var(--muted);min-width:36px;text-align:right">${Math.round(c.count/total*100)}%</span>
         </div>`).join('');
       return `
       <div style="margin-bottom:28px">
-        <div style="font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:var(--navy);border-left:4px solid var(--gold);padding-left:10px;margin-bottom:14px;text-transform:uppercase;letter-spacing:1px">${sn++}. Genel İlerleme Dağılımı</div>
+        <div style="font-family:'Inter',sans-serif;font-size:12px;font-weight:600;color:var(--navy);border-left:4px solid var(--gold);padding-left:10px;margin-bottom:14px;text-transform:uppercase;letter-spacing:1px">${sn++}. Genel İlerleme Dağılımı</div>
         <div style="display:flex;align-items:center;gap:32px;background:var(--cream);border-radius:12px;padding:20px 24px;border:1px solid var(--border)">
           <div style="display:flex;flex-direction:column;align-items:center;flex-shrink:0;gap:10px">
             <svg width="180" height="180" viewBox="0 0 180 180">${slices}</svg>
             <div style="text-align:center">
               <div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;font-weight:600">Ortalama İlerleme</div>
-              <div style="font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:${avgProgress>=80?'#2D7D46':avgProgress>=40?'#C8922A':'#C0392B'}">${avgProgress}%</div>
+              <div style="font-family:'Inter',sans-serif;font-size:22px;font-weight:600;color:${avgProgress>=80?'#2D7D46':avgProgress>=40?'#C8922A':'#C0392B'}">${avgProgress}%</div>
               <div style="width:140px;height:6px;background:#e0e0e0;border-radius:3px;margin:4px auto 0">
                 <div style="height:100%;border-radius:3px;background:${avgProgress>=80?'#2D7D46':avgProgress>=40?'#C8922A':'#C0392B'};width:${avgProgress}%"></div>
               </div>
@@ -3363,7 +3363,7 @@ function renderRapor() {
 
     ${!dept || !depts.length ? '' : `
     <div style="margin-bottom:28px">
-      <div style="font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:var(--navy);border-left:4px solid var(--gold);padding-left:10px;margin-bottom:14px;text-transform:uppercase;letter-spacing:1px">${sn++}. Departman Bazlı Durum</div>
+      <div style="font-family:'Inter',sans-serif;font-size:12px;font-weight:600;color:var(--navy);border-left:4px solid var(--gold);padding-left:10px;margin-bottom:14px;text-transform:uppercase;letter-spacing:1px">${sn++}. Departman Bazlı Durum</div>
       <table style="width:100%;border-collapse:collapse;font-size:13px">
         <tr style="background:var(--navy)">${['Departman','Toplam','Aktif','Tamamlanan','Geride'].map(h=>`<th style="padding:10px 12px;text-align:left;color:white;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px">${h}</th>`).join('')}</tr>
         ${depts.map((d,i)=>{const ps=projeler.filter(p=>p.dept===d);const gc=ps.filter(p=>p.durum==='Geride').length;return`<tr style="background:${i%2?'var(--cream)':'white'}">
@@ -3378,10 +3378,10 @@ function renderRapor() {
 
     ${!showKritik || !kritikler.length ? '' : `
     <div style="margin-bottom:28px">
-      <div style="font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:var(--red);border-left:4px solid var(--red);padding-left:10px;margin-bottom:14px;text-transform:uppercase;letter-spacing:1px">${sn++}. Dikkat Gerektiren Projeler</div>
+      <div style="font-family:'Inter',sans-serif;font-size:12px;font-weight:600;color:var(--red);border-left:4px solid var(--red);padding-left:10px;margin-bottom:14px;text-transform:uppercase;letter-spacing:1px">${sn++}. Dikkat Gerektiren Projeler</div>
       ${kritikler.map(p=>`
         <div style="padding:11px 15px;margin-bottom:7px;background:#fff5f5;border:1px solid #f5c6c2;border-radius:8px;display:flex;justify-content:space-between;align-items:center">
-          <div><div style="font-weight:700;font-size:13px">${p.ad}</div>
+          <div><div style="font-weight:600;font-size:13px">${p.ad}</div>
           <div style="font-size:11px;color:var(--muted);margin-top:2px">${p.dept} · ${p.sorumlu} · Bitiş: ${fmtDate(p.bitis)}</div></div>
           <div style="display:flex;gap:6px">${statusBadge(p.durum)}${statusBadge(p.risk)}</div>
         </div>`).join('')}
@@ -3389,7 +3389,7 @@ function renderRapor() {
 
     ${!showProj || !projeler.length ? '' : `
     <div>
-      <div style="font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:var(--navy);border-left:4px solid var(--gold);padding-left:10px;margin-bottom:18px;text-transform:uppercase;letter-spacing:1px">${sn++}. Proje Detayları</div>
+      <div style="font-family:'Inter',sans-serif;font-size:12px;font-weight:600;color:var(--navy);border-left:4px solid var(--gold);padding-left:10px;margin-bottom:18px;text-transform:uppercase;letter-spacing:1px">${sn++}. Proje Detayları</div>
       ${projeler.map((p,pi) => {
         const steps = showAdimlar ? allSteps.filter(s => s.project_id === p.id) : [];
         const pct   = calcStepProgress(p.id);
@@ -3400,12 +3400,12 @@ function renderRapor() {
         <div style="margin-bottom:18px;border:1px solid var(--border);border-radius:10px;overflow:hidden;page-break-inside:avoid">
           <div style="background:var(--navy);padding:13px 18px;display:flex;align-items:center;justify-content:space-between">
             <div>
-              <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:15px;color:white">${p.ad}</div>
+              <div style="p0;font-size:15px;color:white">${p.ad}</div>
               <div style="font-size:11px;color:rgba(255,255,255,0.5);margin-top:3px">${p.dept}${p.kategori?' · '+p.kategori:''} · ${p.sorumlu} · ${fmtDate(p.baslangic)} → ${fmtDate(p.bitis)}</div>
             </div>
             <div style="display:flex;align-items:center;gap:10px">
-              <div style="font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:${pColor}">${pct}%</div>
-              <div style="padding:5px 12px;border-radius:20px;font-size:12px;font-weight:700;background:${gdCfg.bg};color:${gdCfg.color};border:1.5px solid ${gdCfg.color}">${gdCfg.icon} ${gd}</div>
+              <div style="font-family:'Inter',sans-serif;font-size:20px;font-weight:600;color:${pColor}">${pct}%</div>
+              <div style="padding:5px 12px;border-radius:20px;font-size:12px;font-weight:600;background:${gdCfg.bg};color:${gdCfg.color};border:1.5px solid ${gdCfg.color}">${gdCfg.icon} ${gd}</div>
             </div>
           </div>
           <div style="height:5px;background:#eee"><div style="height:100%;background:${pColor};width:${pct}%"></div></div>
@@ -3418,22 +3418,22 @@ function renderRapor() {
           </div>
           ${!showAdimlar||!steps.length ? '' : `
           <div style="padding:0 18px 14px">
-            <div style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px;padding:12px 0 8px;border-bottom:1px solid var(--cream-dark)">Proje Adımları (${steps.length})</div>
+            <div style="font-size:10px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px;padding:12px 0 8px;border-bottom:1px solid var(--cream-dark)">Proje Adımları (${steps.length})</div>
             ${steps.map((s,si) => {
               const sc = stepCircleColor[s.durum]||'#999';
               const done = s.durum==='Tamamlandı';
               return `
               <div style="display:flex;align-items:flex-start;gap:12px;padding:9px 0;border-bottom:${si<steps.length-1?'1px solid var(--cream-dark)':'none'}">
                 <div style="display:flex;flex-direction:column;align-items:center;padding-top:2px">
-                  <div style="width:22px;height:22px;border-radius:50%;background:${sc};display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:white;flex-shrink:0">${stepIcon[s.durum]||'–'}</div>
+                  <div style="width:22px;height:22px;border-radius:50%;background:${sc};display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:600;color:white;flex-shrink:0">${stepIcon[s.durum]||'–'}</div>
                   ${si<steps.length-1?`<div style="width:2px;flex:1;min-height:14px;background:var(--border);margin-top:3px"></div>`:''}
                 </div>
                 <div style="flex:1;min-width:0">
                   <div style="display:flex;align-items:center;justify-content:space-between;gap:10px">
                     <div style="font-size:13px;font-weight:${done?400:600};color:${done?'var(--muted)':'var(--navy)'}">${s.ad}</div>
                     <div style="display:flex;align-items:center;gap:8px;flex-shrink:0">
-                      <div style="font-size:11px;font-weight:700;color:${sc}">${s.ilerleme||0}%</div>
-                      <div style="padding:2px 8px;border-radius:12px;font-size:10px;font-weight:700;background:${sc}22;color:${sc}">${s.durum}</div>
+                      <div style="font-size:11px;font-weight:600;color:${sc}">${s.ilerleme||0}%</div>
+                      <div style="padding:2px 8px;border-radius:12px;font-size:10px;font-weight:600;background:${sc}22;color:${sc}">${s.durum}</div>
                     </div>
                   </div>
                   <div style="font-size:11px;color:var(--muted);margin-top:3px">${s.sorumlu||''}${(s.sorumlu&&(s.planl_baslangic||s.planl_bitis))?' · ':''}${s.planl_baslangic?fmtDate(s.planl_baslangic)+' → ':''}${s.planl_bitis?fmtDate(s.planl_bitis):''}</div>
@@ -3467,23 +3467,23 @@ function renderGoalsAdmin() {
       <div style="background:var(--navy);padding:12px 16px;display:flex;align-items:center;gap:10px">
         <span style="font-size:20px">${sg.icon}</span>
         <div style="flex:1">
-          <div style="font-size:13px;font-weight:800;color:white">${sg.baslik}</div>
+          <div style="font-size:13px;font-weight:600;color:white">${sg.baslik}</div>
           <div style="font-size:11px;color:rgba(255,255,255,0.5);margin-top:2px">${sg.aciklama||''}</div>
         </div>
         <div style="display:flex;gap:6px">
-          <button onclick="openEditGoalModal(${sgIdx})" style="padding:4px 10px;border-radius:6px;border:1px solid rgba(255,255,255,0.3);background:transparent;color:white;font-size:11px;font-weight:700;cursor:pointer">✏️ Düzenle</button>
-          <button onclick="deleteGoal(${sgIdx})" style="padding:4px 10px;border-radius:6px;border:1px solid var(--red);background:transparent;color:#ff6b6b;font-size:11px;font-weight:700;cursor:pointer">🗑 Sil</button>
+          <button onclick="openEditGoalModal(${sgIdx})" style="padding:4px 10px;border-radius:6px;border:1px solid rgba(255,255,255,0.3);background:transparent;color:white;font-size:11px;font-weight:600;cursor:pointer">✏️ Düzenle</button>
+          <button onclick="deleteGoal(${sgIdx})" style="padding:4px 10px;border-radius:6px;border:1px solid var(--red);background:transparent;color:#ff6b6b;font-size:11px;font-weight:600;cursor:pointer">🗑 Sil</button>
         </div>
       </div>
       <div style="padding:12px 16px;background:white">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
-          <div style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px">Alt Hedefler (${sg.hedefler.length})</div>
-          <button onclick="openNewObjectiveModal(${sgIdx})" style="padding:3px 10px;border-radius:6px;border:1.5px solid var(--navy);background:white;color:var(--navy);font-size:11px;font-weight:700;cursor:pointer">+ Alt Hedef Ekle</button>
+          <div style="font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:1px">Alt Hedefler (${sg.hedefler.length})</div>
+          <button onclick="openNewObjectiveModal(${sgIdx})" style="padding:3px 10px;border-radius:6px;border:1.5px solid var(--navy);background:white;color:var(--navy);font-size:11px;font-weight:600;cursor:pointer">+ Alt Hedef Ekle</button>
         </div>
         ${sg.hedefler.map((ob, obIdx) => `
           <div style="display:flex;align-items:center;gap:10px;padding:8px 12px;background:var(--cream);border-radius:7px;margin-bottom:6px;border-left:3px solid var(--gold)">
             <div style="flex:1">
-              <div style="font-size:12px;font-weight:700;color:var(--navy)">${ob.baslik}</div>
+              <div style="font-size:12px;font-weight:600;color:var(--navy)">${ob.baslik}</div>
               <div style="font-size:11px;color:var(--muted);margin-top:2px">${allProjects.filter(p=>(p.strategic_goal_ids||[]).includes(ob.id)).length} proje bağlı</div>
             </div>
             <div style="display:flex;gap:6px">
@@ -3496,7 +3496,7 @@ function renderGoalsAdmin() {
 }
 
 function openNewGoalModal() {
-  document.getElementById('m-title').innerHTML = '<div style="font-size:15px;font-weight:800;color:var(--navy)">🎯 Yeni Stratejik Hedef Grubu</div>';
+  document.getElementById('m-title').innerHTML = '<div style="font-size:15px;font-weight:600;color:var(--navy)">🎯 Yeni Stratejik Hedef Grubu</div>';
   document.getElementById('m-body').innerHTML = `
     <div class="form-grid">
       <div class="form-group">
@@ -3520,7 +3520,7 @@ function openNewGoalModal() {
 
 function openEditGoalModal(sgIdx) {
   const sg = STRATEGIC_GOALS[sgIdx];
-  document.getElementById('m-title').innerHTML = '<div style="font-size:15px;font-weight:800;color:var(--navy)">✏️ Hedef Grubunu Düzenle</div>';
+  document.getElementById('m-title').innerHTML = '<div style="font-size:15px;font-weight:600;color:var(--navy)">✏️ Hedef Grubunu Düzenle</div>';
   document.getElementById('m-body').innerHTML = `
     <div class="form-grid">
       <div class="form-group">
@@ -3581,7 +3581,7 @@ function deleteGoal(sgIdx) {
 }
 
 function openNewObjectiveModal(sgIdx) {
-  document.getElementById('m-title').innerHTML = '<div style="font-size:15px;font-weight:800;color:var(--navy)">➕ Alt Hedef Ekle</div>';
+  document.getElementById('m-title').innerHTML = '<div style="font-size:15px;font-weight:600;color:var(--navy)">➕ Alt Hedef Ekle</div>';
   document.getElementById('m-body').innerHTML = `
     <div class="form-group">
       <div class="form-label">Alt Hedef Başlığı <span style="color:var(--red)">*</span></div>
@@ -3595,7 +3595,7 @@ function openNewObjectiveModal(sgIdx) {
 
 function openEditObjectiveModal(sgIdx, obIdx) {
   const ob = STRATEGIC_GOALS[sgIdx].hedefler[obIdx];
-  document.getElementById('m-title').innerHTML = '<div style="font-size:15px;font-weight:800;color:var(--navy)">✏️ Alt Hedefi Düzenle</div>';
+  document.getElementById('m-title').innerHTML = '<div style="font-size:15px;font-weight:600;color:var(--navy)">✏️ Alt Hedefi Düzenle</div>';
   document.getElementById('m-body').innerHTML = `
     <div class="form-group">
       <div class="form-label">Alt Hedef Başlığı</div>
@@ -3750,7 +3750,7 @@ function renderAccessMgmt() {
   const assigned = u.projects || [];
   el.innerHTML = `
     <div style="margin-bottom:14px">
-      <div style="font-size:13px;font-weight:700;color:var(--navy);margin-bottom:4px">${u.full_name} — Proje Erişimleri</div>
+      <div style="font-size:13px;font-weight:600;color:var(--navy);margin-bottom:4px">${u.full_name} — Proje Erişimleri</div>
       <div style="font-size:11px;color:var(--muted)">Kullanıcının görebileceği projeler</div>
     </div>
     <div style="display:flex;flex-direction:column;gap:6px;max-height:400px;overflow-y:auto">
@@ -3804,7 +3804,7 @@ function deleteDemoUser(uid) {
 }
 
 async function openInviteModal() {
-  document.getElementById('m-title').innerHTML = '<div style="font-size:15px;font-weight:800;color:var(--navy)">👤 Yeni Kullanıcı Ekle</div>';
+  document.getElementById('m-title').innerHTML = '<div style="font-size:15px;font-weight:600;color:var(--navy)">👤 Yeni Kullanıcı Ekle</div>';
   document.getElementById('m-body').innerHTML = `
     <div class="form-grid">
       <div class="form-group full">
@@ -3847,7 +3847,7 @@ async function openInviteModal() {
 function openEditUserModal(uid) {
   const u = getDemoUsers().find(x => x.id === uid);
   if (!u) return;
-  document.getElementById('m-title').innerHTML = '<div style="font-size:15px;font-weight:800;color:var(--navy)">✏️ Kullanıcıyı Düzenle</div>';
+  document.getElementById('m-title').innerHTML = '<div style="font-size:15px;font-weight:600;color:var(--navy)">✏️ Kullanıcıyı Düzenle</div>';
   document.getElementById('m-body').innerHTML = `
     <div class="form-grid">
       <div class="form-group full">
