@@ -373,9 +373,9 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 .pd-body { padding: 20px 24px; }
 .pd-section { margin-bottom: 22px; }
 .pd-section-title {
-  font-size: 10px; font-weight: 700; color: var(--muted);
-  text-transform: uppercase; letter-spacing: 1.5px;
-  margin-bottom: 10px; padding-bottom: 6px;
+  font-size: 12px; font-weight: 500; color: var(--muted);
+  text-transform: uppercase; letter-spacing: 0.8px;
+  margin-bottom: 12px; padding-bottom: 8px;
   border-bottom: 1px solid var(--cream-dark);
 }
 .pd-meta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
@@ -1319,7 +1319,7 @@ function renderTrendChart(projId) {
     return;
   }
 
-  const W = 340, H = 100, PL = 28, PR = 8, PT = 10, PB = 22;
+  const W = 480, H = 140, PL = 36, PR = 16, PT = 20, PB = 32;
   const cW = W - PL - PR, cH = H - PT - PB;
   const vals = points.map(p => p.v);
   const minV = 0, maxV = 100;
@@ -1330,69 +1330,87 @@ function renderTrendChart(projId) {
 
   // Renk: son değere göre
   const lastV = vals[vals.length-1];
-  const lineColor = lastV>=70?'#22c55e':lastV>=40?'#f59e0b':'#ef4444';
-  const fillColor = lastV>=70?'rgba(34,197,94,0.12)':lastV>=40?'rgba(245,158,11,0.12)':'rgba(239,68,68,0.12)';
+  const lineColor = lastV>=70?'#16a34a':lastV>=40?'#d97706':'#dc2626';
+  const fillColor = lastV>=70?'rgba(22,163,74,0.08)':lastV>=40?'rgba(217,119,6,0.08)':'rgba(220,38,38,0.08)';
+  const fillColorEnd = lastV>=70?'rgba(22,163,74,0)':lastV>=40?'rgba(217,119,6,0)':'rgba(220,38,38,0)';
 
-  // Path
-  const linePath = points.map((p,i) => (i===0?'M':'L')+xPos(i).toFixed(1)+','+yPos(p.v).toFixed(1)).join(' ');
-  const fillPath = linePath + ' L'+xPos(n-1).toFixed(1)+','+(PT+cH)+' L'+xPos(0).toFixed(1)+','+(PT+cH)+' Z';
+  const gradId = 'grad-' + projId;
+
+  // Smooth bezier path
+  const smooth = (pts) => pts.map((p,i) => {
+    if (i === 0) return `M${xPos(i).toFixed(1)},${yPos(p.v).toFixed(1)}`;
+    const prev = pts[i-1];
+    const cpx = (xPos(i-1) + xPos(i)) / 2;
+    return `C${cpx.toFixed(1)},${yPos(prev.v).toFixed(1)} ${cpx.toFixed(1)},${yPos(p.v).toFixed(1)} ${xPos(i).toFixed(1)},${yPos(p.v).toFixed(1)}`;
+  }).join(' ');
+
+  const linePath = smooth(points);
+  const fillPath = linePath + ` L${xPos(n-1).toFixed(1)},${PT+cH} L${xPos(0).toFixed(1)},${PT+cH} Z`;
 
   // Y grid lines: 0, 25, 50, 75, 100
   const gridLines = [0,25,50,75,100].map(v => {
     const y = yPos(v).toFixed(1);
     return `<line x1="${PL}" y1="${y}" x2="${W-PR}" y2="${y}" stroke="#f1f5f9" stroke-width="1"/>
-            <text x="${PL-4}" y="${parseFloat(y)+4}" font-size="8" fill="#94a3b8" text-anchor="end">${v}</text>`;
+            <text x="${PL-8}" y="${parseFloat(y)+4}" font-family="Inter,sans-serif" font-size="10" fill="#9ca3af" text-anchor="end">${v}</text>`;
   }).join('');
 
-  // X labels: ilk, orta, son
-  const xLabels = [0, Math.floor((n-1)/2), n-1].map(i => {
-    const d = points[i].d.slice(5); // MM-DD
-    return `<text x="${xPos(i).toFixed(1)}" y="${H-4}" font-size="8" fill="#94a3b8" text-anchor="middle">${d}</text>`;
+  // X labels: ilk, 1/3, 2/3, son
+  const xIdxs = [...new Set([0, Math.round((n-1)/3), Math.round(2*(n-1)/3), n-1])];
+  const xLabels = xIdxs.map(i => {
+    const d = points[i].d.slice(5);
+    return `<text x="${xPos(i).toFixed(1)}" y="${H-8}" font-family="Inter,sans-serif" font-size="10" fill="#9ca3af" text-anchor="middle">${d}</text>`;
   }).join('');
 
-  // Data points with interactive hover tooltips
-  const dotRadius = 3;
+  // Data points
+  const dotRadius = 3.5;
   const chartId = 'tc-' + projId;
   const dots = points.map((p,i) => {
     const isLast = i === n-1;
+    const isFirst = i === 0;
     const cx = xPos(i).toFixed(1);
     const cy = yPos(p.v).toFixed(1);
-    const showLabel = isLast || i === 0;
-    const dateLabel = p.d.slice(5).replace('-','/'); // MM/DD
-    const fullDate = p.d; // YYYY-MM-DD
+    const showLabel = isLast || isFirst;
+    const fullDate = p.d;
     return `<g class="trend-dot" style="cursor:pointer"
         onmouseenter="showTrendTip('${chartId}',${cx},${cy},'${fullDate}',${p.v})"
         onmouseleave="hideTrendTip('${chartId}')">
-        <circle cx="${cx}" cy="${cy}" r="10" fill="transparent"/>
-        <circle cx="${cx}" cy="${cy}" r="${isLast?4.5:dotRadius}"
-          fill="${isLast?lineColor:'white'}" stroke="${lineColor}" stroke-width="${isLast?0:1.5}"
-          class="dot-circle" style="transition:r 0.15s"/>
-        ${showLabel?`<text x="${cx}" y="${(parseFloat(cy)-7).toFixed(1)}" font-size="9" font-weight="700" fill="${lineColor}" text-anchor="middle">${p.v}%</text>`:''}
+        <circle cx="${cx}" cy="${cy}" r="12" fill="transparent"/>
+        <circle cx="${cx}" cy="${cy}" r="${isLast?5.5:dotRadius}"
+          fill="${isLast?lineColor:'white'}" stroke="${lineColor}"
+          stroke-width="${isLast?0:1.5}" style="transition:r 0.15s"/>
+        ${showLabel?`<text x="${cx}" y="${(parseFloat(cy)-10).toFixed(1)}" font-family="Inter,sans-serif" font-size="11" font-weight="600" fill="${lineColor}" text-anchor="middle">${p.v}%</text>`:''}
       </g>`;
   }).join('');
 
-  // Tooltip overlay (hidden initially)
+  // Tooltip overlay
   const tooltip = `<g id="${chartId}-tip" style="display:none;pointer-events:none">
-    <rect id="${chartId}-tip-bg" x="0" y="0" width="80" height="36" rx="5" fill="var(--navy)" opacity="0.92"/>
-    <text id="${chartId}-tip-date" x="40" y="14" font-size="9" fill="rgba(255,255,255,0.7)" text-anchor="middle"></text>
-    <text id="${chartId}-tip-val"  x="40" y="28" font-size="13" font-weight="800" fill="white" text-anchor="middle"></text>
+    <rect id="${chartId}-tip-bg" x="0" y="0" width="76" height="38" rx="6" fill="#1e293b" opacity="0.95"/>
+    <text id="${chartId}-tip-date" x="38" y="14" font-family="Inter,sans-serif" font-size="9" fill="rgba(255,255,255,0.6)" text-anchor="middle"></text>
+    <text id="${chartId}-tip-val"  x="38" y="30" font-family="Inter,sans-serif" font-size="14" font-weight="600" fill="white" text-anchor="middle"></text>
   </g>`;
 
   // Trend badge
   const firstV = vals[0];
   const diff = lastV - firstV;
-  const trendIcon = diff > 0 ? '▲' : diff < 0 ? '▼' : '—';
-  const trendColor = diff > 0 ? '#22c55e' : diff < 0 ? '#ef4444' : '#94a3b8';
+  const trendIcon = diff > 0 ? '↑' : diff < 0 ? '↓' : '—';
+  const trendColor = diff > 0 ? '#16a34a' : diff < 0 ? '#dc2626' : '#9ca3af';
+  const trendBg = diff > 0 ? '#f0fdf4' : diff < 0 ? '#fef2f2' : '#f9fafb';
 
   el.innerHTML = `
-    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
-      <span style="font-size:11px;color:var(--muted)">${n} veri noktası</span>
-      <span style="font-size:12px;font-weight:600;color:${trendColor}">${trendIcon} ${Math.abs(diff)}% değişim</span>
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+      <span style="font-size:12px;color:#9ca3af;font-family:Inter,sans-serif">${n} veri noktası</span>
+      <span style="font-size:12px;font-weight:600;color:${trendColor};background:${trendBg};padding:3px 10px;border-radius:20px;font-family:Inter,sans-serif">${trendIcon} ${Math.abs(diff)}% değişim</span>
     </div>
     <svg width="100%" viewBox="0 0 ${W} ${H}" style="overflow:visible;display:block">
+      <defs>
+        <linearGradient id="${gradId}" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="${lineColor}" stop-opacity="0.15"/>
+          <stop offset="100%" stop-color="${lineColor}" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
       ${gridLines}
-      <path d="${fillPath}" fill="${fillColor}"/>
-      <path d="${linePath}" fill="none" stroke="${lineColor}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="${fillPath}" fill="url(#${gradId})"/>
+      <path d="${linePath}" fill="none" stroke="${lineColor}" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
       ${dots}
       ${xLabels}
       ${tooltip}
