@@ -968,9 +968,9 @@ const PROJ_DURUMLAR = ['Devam Ediyor','Askıya Alındı','Geride','Tamamlandı',
 const PROJ_KATEGORILER = ['Türkiye','International','Kurumsal Fonksiyonlar ve Paylaşımlı Hizmetler','Dijital Dönüşüm','Altyapı','Ürün Geliştirme','Süreç İyileştirme','Mevzuat & Uyum','Ar-Ge'];
 const PROJ_ASAMALAR = ['Ön Çalışma', 'Geliştirme', 'Uygulama'];
 const ASAMA_CFG = {
-  'Ön Çalışma': { color:'#7B2FBE', bg:'#F3E8FF', icon:'🔍' },
-  'Geliştirme':  { color:'#0099CC', bg:'#E0F4FB', icon:'⚙️' },
-  'Uygulama':    { color:'#66BB33', bg:'#EBF7DF', icon:'🚀' },
+  'Ön Çalışma': { color:'#7B2FBE', bg:'#F3E8FF', icon:'' },
+  'Geliştirme':  { color:'#0099CC', bg:'#E0F4FB', icon:'' },
+  'Uygulama':    { color:'#66BB33', bg:'#EBF7DF', icon:'' },
 };
 const GENEL_DURUMLAR = ['Devam Ediyor','Askıda','Tamamlandı','İptal'];
 const GENEL_DURUM_CFG = {
@@ -2027,9 +2027,9 @@ function fillDeptFilter() {
   buildCdd('dept', depts);
   buildCdd('status', PROJ_DURUMLAR);
   buildCdd('asama', [
-    {v:'Ön Çalışma', l:'🔍 Ön Çalışma'},
-    {v:'Geliştirme',  l:'⚙️ Geliştirme'},
-    {v:'Uygulama',    l:'🚀 Uygulama'}
+    {v:'Ön Çalışma', l:'Ön Çalışma'},
+    {v:'Geliştirme',  l:'Geliştirme'},
+    {v:'Uygulama',    l:'Uygulama'}
   ]);
   const kats = [...new Set(allProjects.map(p=>p.kategori).filter(Boolean))];
   buildKatCdd(kats);
