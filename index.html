@@ -2263,17 +2263,18 @@ function selectProj(id) {
         }).join('')}
       </div>` : ''}
 
-      <!-- Aktivite -->
+      <!-- Aktivite (yalnızca admin) -->
+      ${isAdmin() ? `
       <div class="pd-section">
         <div class="pd-section-title">🕐 Aktivite</div>
         <div id="act-feed-${id}"></div>
-      </div>
+      </div>` : ''}
 
     </div>
   </div>`;
   // Trend grafiğini render et
   setTimeout(() => renderTrendChart(id), 50);
-  setTimeout(() => renderActivity(id), 50);
+  if (isAdmin()) setTimeout(() => renderActivity(id), 50);
 }
 
 
