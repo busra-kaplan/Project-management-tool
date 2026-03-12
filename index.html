@@ -1827,12 +1827,12 @@ function renderDashboard() {
 
   // ── Özet kartlar
   document.getElementById('dash-kpis').innerHTML = `
-    <div class="kpi-card c-navy" onclick="filterProjeler('')"><div class="kpi-val">${tot}</div><div class="kpi-lbl">Toplam Proje</div><div class="kpi-sub">Tüm portföy</div></div>
-    <div class="kpi-card c-gold" onclick="filterProjeler('Devam Ediyor','genel_durum')"><div class="kpi-val">${akt}</div><div class="kpi-lbl">Aktif</div><div class="kpi-sub">Devam ediyor</div></div>
-    <div class="kpi-card c-green" onclick="filterProjeler('Tamamlandı','genel_durum')"><div class="kpi-val">${tam}</div><div class="kpi-lbl">Tamamlanan</div><div class="kpi-sub">Başarılı</div></div>
-    <div class="kpi-card c-red" onclick="filterProjeler('Geride','durum')"><div class="kpi-val">${gec}</div><div class="kpi-lbl">Geride</div><div class="kpi-sub">Aksiyon gerekli</div></div>
-    <div class="kpi-card c-blue" onclick="filterProjeler('Askıya Alındı','genel_durum')"><div class="kpi-val">${ask}</div><div class="kpi-lbl">Askıda</div><div class="kpi-sub">Askıya Alındı</div></div>
-    <div class="kpi-card c-navy" style="cursor:default"><div class="kpi-val" style="color:${progColor}">${avgProg}%</div><div class="kpi-lbl">Ort. İlerleme</div><div class="kpi-sub">Tüm adımlar</div></div>`;
+    <div class="kpi-card c-navy" onclick="filterProjeler('')"><div class="kpi-val">${tot}</div><div class="kpi-lbl">Toplam Proje</div></div>
+    <div class="kpi-card c-gold" onclick="filterProjeler('Devam Ediyor','genel_durum')"><div class="kpi-val">${akt}</div><div class="kpi-lbl">Aktif</div></div>
+    <div class="kpi-card c-green" onclick="filterProjeler('Tamamlandı','genel_durum')"><div class="kpi-val">${tam}</div><div class="kpi-lbl">Tamamlanan</div></div>
+    <div class="kpi-card c-red" onclick="filterProjeler('Geride','durum')"><div class="kpi-val">${gec}</div><div class="kpi-lbl">Geride</div></div>
+    <div class="kpi-card c-blue" onclick="filterProjeler('Askıya Alındı','genel_durum')"><div class="kpi-val">${ask}</div><div class="kpi-lbl">Askıda</div></div>
+    <div class="kpi-card c-navy" style="cursor:default"><div class="kpi-val" style="color:${progColor}">${avgProg}%</div><div class="kpi-lbl">Ort. İlerleme</div></div>`;
 
   // ── Departman tablosu (overall)
   const depts = [...new Set(allProjects.map(p=>p.dept).filter(Boolean))].sort();
