@@ -453,11 +453,15 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 
 @media print {
   .sidebar,.topbar,.topbar-actions,.btn,#rapor-scroll ~ *{ display:none!important }
-  .main{margin-left:0}
+  .main{margin-left:0!important;padding:0!important}
   #page-rapor > div > div:first-child { display:none!important }
-  #rapor-scroll { border:none!important;overflow:visible!important;padding:0!important }
-  #page-rapor > div { display:block!important }
+  #rapor-scroll { border:none!important;overflow:visible!important;padding:0!important;height:auto!important }
+  #page-rapor > div { display:block!important;height:auto!important }
+  #page-rapor { display:block!important }
+  .page:not(#page-rapor) { display:none!important }
+  #pdf-print-frame { display:block!important }
 }
+#pdf-print-frame { display:none }
 
 /* ── Activity Feed ─────────────────────────────────────── */
 .act-feed { display:flex;flex-direction:column }
@@ -813,6 +817,7 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
                 <button class="btn btn-ghost" style="width:100%;margin-top:6px" onclick="exportRaporKPIsCSV()">⬇ KPI'lar CSV</button>
                 <button class="btn btn-ghost" style="width:100%;margin-top:6px" onclick="exportRaporStepsCSV()">⬇ Adımlar CSV</button>
                 <button class="btn btn-ghost" style="width:100%;margin-top:6px" onclick="exportRaporJSON()">⬇ Tümü JSON</button>
+                <button class="btn btn-ghost" style="width:100%;margin-top:6px" onclick="exportRaporPDF()">⬇ Projeler PDF</button>
               </div>
             </div>
           </div>
@@ -891,8 +896,9 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
                 </div>
               </div>
               <div style="display:flex;gap:8px;flex-shrink:0">
-                <button class="btn btn-ghost btn-sm" onclick="exportProjectsCSV()">CSV İndir</button>
-                <button class="btn btn-primary btn-sm" onclick="exportProjectsJSON()">JSON İndir</button>
+                <button class="btn btn-ghost btn-sm" onclick="exportProjectsCSV()">CSV</button>
+                <button class="btn btn-ghost btn-sm" onclick="exportPagePDF('projeler')">PDF</button>
+                <button class="btn btn-primary btn-sm" onclick="exportProjectsJSON()">JSON</button>
               </div>
             </div>
 
@@ -906,8 +912,9 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
                 </div>
               </div>
               <div style="display:flex;gap:8px;flex-shrink:0">
-                <button class="btn btn-ghost btn-sm" onclick="exportKPIsCSV()">CSV İndir</button>
-                <button class="btn btn-primary btn-sm" onclick="exportKPIsJSON()">JSON İndir</button>
+                <button class="btn btn-ghost btn-sm" onclick="exportKPIsCSV()">CSV</button>
+                <button class="btn btn-ghost btn-sm" onclick="exportPagePDF('kpiler')">PDF</button>
+                <button class="btn btn-primary btn-sm" onclick="exportKPIsJSON()">JSON</button>
               </div>
             </div>
 
@@ -921,8 +928,9 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
                 </div>
               </div>
               <div style="display:flex;gap:8px;flex-shrink:0">
-                <button class="btn btn-ghost btn-sm" onclick="exportStepsCSV()">CSV İndir</button>
-                <button class="btn btn-primary btn-sm" onclick="exportStepsJSON()">JSON İndir</button>
+                <button class="btn btn-ghost btn-sm" onclick="exportStepsCSV()">CSV</button>
+                <button class="btn btn-ghost btn-sm" onclick="exportPagePDF('adimlar')">PDF</button>
+                <button class="btn btn-primary btn-sm" onclick="exportStepsJSON()">JSON</button>
               </div>
             </div>
 
@@ -3577,17 +3585,7 @@ function updateTabLabelLive(val) {
 }
 
 function printCurrentRapor() {
-  // Sadece aktif raporu yazdır
-  const content = document.getElementById('rapor-content').innerHTML;
-  const w = window.open('', '_blank');
-  w.document.write(`<html><head><title>${RAPOR_TABS[activeRaporTab].label}</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-    <style>
-      body{font-family:'Inter',sans-serif;margin:24px 32px;color:#0D1B2A}
-      :root{--navy:#0D1B2A;--gold:#C8922A;--gold-light:#E8B84B;--cream:#F5F0E8;--cream-dark:#EBE4D4;--border:#D9D0C0;--muted:#6B7A8D;--green:#2D7D46;--red:#C0392B;--blue:#1A6EA8;--yellow:#D4A017}
-    </style></head><body>${content}</body></html>`);
-  w.document.close();
-  setTimeout(() => w.print(), 500);
+  window.print();
 }
 
 function renderRapor() {
@@ -4357,7 +4355,7 @@ function downloadFile(content, filename, type) {
   const a = document.createElement('a');
   a.href = url; a.download = filename; a.click();
   setTimeout(() => URL.revokeObjectURL(url), 1000);
-  showToast('İndirme başladı: ' + filename);
+  toast('İndirme başladı: ' + filename, 'ok');
 }
 
 // ── Projeler ─────────────────────────────────────────────────
@@ -4460,6 +4458,70 @@ function exportRaporJSON() {
     adimlar:  allSteps.filter(s => ids.has(s.project_id)),
   };
   downloadFile(JSON.stringify(backup, null, 2), `${label}_export_${dateStamp()}.json`, 'application/json');
+}
+
+// ── Export Sayfası PDF ────────────────────────────────────────
+function exportPagePDF(mode) {
+  // Seçili veriye göre başlık ve satırlar
+  let title, headers, rows;
+  if (mode === 'projeler') {
+    title = 'Projeler Listesi';
+    headers = ['ID','Ad','Departman','Kategori','Sorumlu','Aşama','Durum','Öncelik','Risk','Başlangıç','Bitiş','Bütçe (TL)','Harcanan (TL)'];
+    rows = allProjects.map(p => [p.id, p.ad, p.dept, p.kategori, p.sorumlu, p.asama, p.durum, p.oncelik, p.risk, p.baslangic, p.bitis, (p.butce||0).toLocaleString('tr-TR'), (p.harcanan||0).toLocaleString('tr-TR')]);
+  } else if (mode === 'kpiler') {
+    title = "KPI'lar Listesi";
+    headers = ['ID','Proje ID','Ad','Sorumlu','Hedef','Birim','Gerçekleşen','Dönem','Durum'];
+    rows = allKpis.map(k => [k.id, k.project_id, k.ad, k.sorumlu, k.hedef, k.birim, k.gerceklesen, k.donem, k.durum]);
+  } else {
+    title = 'Proje Adımları Listesi';
+    headers = ['ID','Proje ID','Ad','Sorumlu','Plan. Başlangıç','Plan. Bitiş','Durum','İlerleme (%)'];
+    rows = allSteps.map(s => [s.id, s.project_id, s.ad, s.sorumlu, s.planl_baslangic, s.planl_bitis, s.durum, s.ilerleme]);
+  }
+  _openPrintWindow(title, headers, rows);
+}
+
+function exportRaporPDF() {
+  const { ids, label } = _getRaporSelectedProjects();
+  const projs = allProjects.filter(p => ids.has(p.id));
+  const headers = ['ID','Ad','Departman','Sorumlu','Aşama','Durum','Öncelik','Risk','Başlangıç','Bitiş','Bütçe (TL)','Harcanan (TL)'];
+  const rows = projs.map(p => [p.id, p.ad, p.dept, p.sorumlu, p.asama, p.durum, p.oncelik, p.risk, p.baslangic, p.bitis, (p.butce||0).toLocaleString('tr-TR'), (p.harcanan||0).toLocaleString('tr-TR')]);
+  _openPrintWindow(raporState[activeRaporTab].label || 'Rapor', headers, rows);
+}
+
+function _openPrintWindow(title, headers, rows) {
+  const thStyle = 'padding:7px 10px;text-align:left;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.6px;color:#4A6A88;background:#F0F6FA;border-bottom:2px solid #B8D4E8;white-space:nowrap';
+  const tdStyle = 'padding:6px 10px;font-size:11px;color:#002244;border-bottom:1px solid #EEF3F8;white-space:nowrap';
+  const now = new Date().toLocaleDateString('tr-TR', {day:'numeric', month:'long', year:'numeric'});
+  const html = `<!DOCTYPE html><html lang="tr"><head><meta charset="UTF-8">
+<title>${title}</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap');
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'DM Sans',sans-serif;color:#002244;padding:28px 32px;font-size:12px}
+  h1{font-size:16px;font-weight:700;color:#003366;margin-bottom:4px}
+  .meta{font-size:11px;color:#4A6A88;margin-bottom:20px}
+  table{width:100%;border-collapse:collapse;font-size:11px}
+  thead tr th{${thStyle}}
+  tbody tr:nth-child(even) td{background:#F7FAFC}
+  tbody tr td{${tdStyle}}
+  @media print{body{padding:12px 16px}@page{margin:1cm;size:A4 landscape}}
+</style></head><body>
+<h1>TİRYAKİ AGRO HOLDİNG · T-Orch</h1>
+<div class="meta">${title.toUpperCase()} &nbsp;·&nbsp; ${now} &nbsp;·&nbsp; ${rows.length} kayıt</div>
+<table>
+  <thead><tr>${headers.map(h=>`<th>${h}</th>`).join('')}</tr></thead>
+  <tbody>${rows.map((r,i)=>`<tr>${r.map(c=>`<td>${c!==null&&c!==undefined?c:'—'}</td>`).join('')}</tr>`).join('')}</tbody>
+</table>
+<script>window.onload=function(){setTimeout(function(){window.print()},400)}<\/script>
+</body></html>`;
+
+  const blob = new Blob([html], {type: 'text/html;charset=utf-8'});
+  const url = URL.createObjectURL(blob);
+  const w = window.open(url, '_blank');
+  if (!w) {
+    toast('Lütfen tarayıcınızın açılır pencere engelleyicisine izin verin.', 'err');
+  }
+  setTimeout(() => URL.revokeObjectURL(url), 30000);
 }
 
 </script>
