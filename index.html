@@ -807,6 +807,13 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
             <div style="padding:14px 16px;margin-top:auto">
               <button class="btn btn-primary" style="width:100%" onclick="renderRapor()">🔄 Raporu Güncelle</button>
               <button class="btn btn-ghost" style="width:100%;margin-top:8px" onclick="printCurrentRapor()">🖨️ Yazdır / PDF</button>
+              <div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--border)">
+                <div style="font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">Dışa Aktar</div>
+                <button class="btn btn-ghost" style="width:100%" onclick="exportRaporProjectsCSV()">⬇ Projeler CSV</button>
+                <button class="btn btn-ghost" style="width:100%;margin-top:6px" onclick="exportRaporKPIsCSV()">⬇ KPI'lar CSV</button>
+                <button class="btn btn-ghost" style="width:100%;margin-top:6px" onclick="exportRaporStepsCSV()">⬇ Adımlar CSV</button>
+                <button class="btn btn-ghost" style="width:100%;margin-top:6px" onclick="exportRaporJSON()">⬇ Tümü JSON</button>
+              </div>
             </div>
           </div>
 
@@ -4409,6 +4416,50 @@ function exportFullBackupJSON() {
 function dateStamp() {
   const d = new Date();
   return d.getFullYear() + ('0'+(d.getMonth()+1)).slice(-2) + ('0'+d.getDate()).slice(-2);
+}
+
+// ── Rapor sekmesine özgü export ──────────────────────────────
+function _getRaporSelectedProjects() {
+  saveCurrentRaporState();
+  const state = raporState[activeRaporTab];
+  const ids = state.projIds ?? allProjects.map(p => p.id);
+  return { ids: new Set(ids), label: (state.label || 'rapor').replace(/\s+/g, '-') };
+}
+
+function exportRaporProjectsCSV() {
+  const { ids, label } = _getRaporSelectedProjects();
+  const projs = allProjects.filter(p => ids.has(p.id));
+  const headers = ['ID','Ad','Departman','Kategori','Sorumlu','Aşama','Durum','Genel Durum','Öncelik','Risk','Başlangıç','Bitiş','Bütçe (TL)','Harcanan (TL)','Açıklama','Stratejik Hedef ID\'leri'];
+  const rows = projs.map(p => [p.id, p.ad, p.dept, p.kategori, p.sorumlu, p.asama, p.durum, p.genel_durum, p.oncelik, p.risk, p.baslangic, p.bitis, p.butce, p.harcanan, p.aciklama, (p.strategic_goal_ids||[]).join(';')]);
+  downloadFile(buildCSV(headers, rows), `${label}_projeler_${dateStamp()}.csv`, 'text/csv');
+}
+
+function exportRaporKPIsCSV() {
+  const { ids, label } = _getRaporSelectedProjects();
+  const kpis = allKpis.filter(k => ids.has(k.project_id));
+  const headers = ['ID','Proje ID','Ad','Sorumlu','Hedef','Birim','Gerçekleşen','Dönem','Durum','Açıklama'];
+  const rows = kpis.map(k => [k.id, k.project_id, k.ad, k.sorumlu, k.hedef, k.birim, k.gerceklesen, k.donem, k.durum, k.aciklama]);
+  downloadFile(buildCSV(headers, rows), `${label}_kpiler_${dateStamp()}.csv`, 'text/csv');
+}
+
+function exportRaporStepsCSV() {
+  const { ids, label } = _getRaporSelectedProjects();
+  const steps = allSteps.filter(s => ids.has(s.project_id));
+  const headers = ['ID','Proje ID','Ad','Sorumlu','Plan. Başlangıç','Plan. Bitiş','Durum','İlerleme (%)','Notlar'];
+  const rows = steps.map(s => [s.id, s.project_id, s.ad, s.sorumlu, s.planl_baslangic, s.planl_bitis, s.durum, s.ilerleme, s.notlar]);
+  downloadFile(buildCSV(headers, rows), `${label}_adimlar_${dateStamp()}.csv`, 'text/csv');
+}
+
+function exportRaporJSON() {
+  const { ids, label } = _getRaporSelectedProjects();
+  const backup = {
+    exportedAt: new Date().toISOString(),
+    raporAdi: raporState[activeRaporTab].label,
+    projeler: allProjects.filter(p => ids.has(p.id)),
+    kpiler:   allKpis.filter(k => ids.has(k.project_id)),
+    adimlar:  allSteps.filter(s => ids.has(s.project_id)),
+  };
+  downloadFile(JSON.stringify(backup, null, 2), `${label}_export_${dateStamp()}.json`, 'application/json');
 }
 
 </script>
